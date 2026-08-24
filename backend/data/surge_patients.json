@@ -1,0 +1,1688 @@
+[
+  {
+    "id": "P-021",
+    "name": "Surge Patient #21 (Synthetic)",
+    "age": 42,
+    "gender": "Male",
+    "chief_complaint": "Smoke inhalation and bronchospasm",
+    "symptoms": [
+      "Stridor",
+      "Cough",
+      "Dyspnea"
+    ],
+    "pain_score": 6,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 128,
+      "systolic_bp": 136,
+      "diastolic_bp": 88,
+      "spo2": 88,
+      "resp_rate": 30,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 128,
+        "systolic_bp": 136,
+        "diastolic_bp": 88,
+        "spo2": 88,
+        "resp_rate": 30,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 47,
+    "elapsed_since_vital": 47,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_21"
+  },
+  {
+    "id": "P-022",
+    "name": "Surge Patient #22 (Synthetic)",
+    "age": 29,
+    "gender": "Female",
+    "chief_complaint": "Deep shrapnel laceration to thigh",
+    "symptoms": [
+      "Active bleeding",
+      "Tachycardia"
+    ],
+    "pain_score": 8,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 115,
+      "systolic_bp": 105,
+      "diastolic_bp": 68,
+      "spo2": 97,
+      "resp_rate": 22,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 115,
+        "systolic_bp": 105,
+        "diastolic_bp": 68,
+        "spo2": 97,
+        "resp_rate": 22,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 49,
+    "elapsed_since_vital": 49,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_22"
+  },
+  {
+    "id": "P-023",
+    "name": "Surge Patient #23 (Synthetic)",
+    "age": 52,
+    "gender": "Male",
+    "chief_complaint": "Closed head injury with brief loss of consciousness",
+    "symptoms": [
+      "Confusion",
+      "Vomiting",
+      "Scalp hematoma"
+    ],
+    "pain_score": 7,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 95,
+      "systolic_bp": 148,
+      "diastolic_bp": 96,
+      "spo2": 96,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 95,
+        "systolic_bp": 148,
+        "diastolic_bp": 96,
+        "spo2": 96,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 6,
+    "elapsed_since_vital": 6,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_23"
+  },
+  {
+    "id": "P-024",
+    "name": "Surge Patient #24 (Synthetic)",
+    "age": 31,
+    "gender": "Female",
+    "chief_complaint": "Blunt abdominal trauma from crowd crush",
+    "symptoms": [
+      "Diffuse tenderness",
+      "Guarding"
+    ],
+    "pain_score": 8,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 110,
+      "systolic_bp": 98,
+      "diastolic_bp": 63,
+      "spo2": 97,
+      "resp_rate": 24,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 110,
+        "systolic_bp": 98,
+        "diastolic_bp": 63,
+        "spo2": 97,
+        "resp_rate": 24,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 8,
+    "elapsed_since_vital": 8,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_24"
+  },
+  {
+    "id": "P-025",
+    "name": "Surge Patient #25 (Synthetic)",
+    "age": 7,
+    "gender": "Male",
+    "chief_complaint": "Pediatric forearm fracture with displacement",
+    "symptoms": [
+      "Visible deformity",
+      "Severe pain",
+      "Crying"
+    ],
+    "pain_score": 9,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 130,
+      "systolic_bp": 98,
+      "diastolic_bp": 63,
+      "spo2": 99,
+      "resp_rate": 26,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 130,
+        "systolic_bp": 98,
+        "diastolic_bp": 63,
+        "spo2": 99,
+        "resp_rate": 26,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 10,
+    "elapsed_since_vital": 10,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_25"
+  },
+  {
+    "id": "P-026",
+    "name": "Surge Patient #26 (Synthetic)",
+    "age": 19,
+    "gender": "Female",
+    "chief_complaint": "Severe asthma attack triggered by dust and smoke",
+    "symptoms": [
+      "Wheezing",
+      "Speaking in 2-word phrases",
+      "Retractions"
+    ],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 135,
+      "systolic_bp": 128,
+      "diastolic_bp": 83,
+      "spo2": 90,
+      "resp_rate": 32,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 135,
+        "systolic_bp": 128,
+        "diastolic_bp": 83,
+        "spo2": 90,
+        "resp_rate": 32,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 12,
+    "elapsed_since_vital": 12,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_26"
+  },
+  {
+    "id": "P-027",
+    "name": "Surge Patient #27 (Synthetic)",
+    "age": 26,
+    "gender": "Male",
+    "chief_complaint": "Acute panic and hyperventilation syndrome",
+    "symptoms": [
+      "Tingling hands",
+      "Tachypnea",
+      "Carpopedal spasm"
+    ],
+    "pain_score": 2,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 118,
+      "systolic_bp": 138,
+      "diastolic_bp": 89,
+      "spo2": 100,
+      "resp_rate": 34,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 118,
+        "systolic_bp": 138,
+        "diastolic_bp": 89,
+        "spo2": 100,
+        "resp_rate": 34,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 14,
+    "elapsed_since_vital": 14,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_27"
+  },
+  {
+    "id": "P-028",
+    "name": "Surge Patient #28 (Synthetic)",
+    "age": 36,
+    "gender": "Female",
+    "chief_complaint": "Partial thickness burn to both forearms (10% TBSA)",
+    "symptoms": [
+      "Blistering",
+      "Erythema",
+      "Severe pain"
+    ],
+    "pain_score": 9,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 105,
+      "systolic_bp": 120,
+      "diastolic_bp": 78,
+      "spo2": 98,
+      "resp_rate": 20,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 105,
+        "systolic_bp": 120,
+        "diastolic_bp": 78,
+        "spo2": 98,
+        "resp_rate": 20,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 16,
+    "elapsed_since_vital": 16,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_28"
+  },
+  {
+    "id": "P-029",
+    "name": "Surge Patient #29 (Synthetic)",
+    "age": 82,
+    "gender": "Male",
+    "chief_complaint": "Geriatric fall during evacuation with hip pain",
+    "symptoms": [
+      "Shortened and externally rotated right leg"
+    ],
+    "pain_score": 8,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 88,
+      "systolic_bp": 142,
+      "diastolic_bp": 92,
+      "spo2": 94,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 88,
+        "systolic_bp": 142,
+        "diastolic_bp": 92,
+        "spo2": 94,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 18,
+    "elapsed_since_vital": 18,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_29"
+  },
+  {
+    "id": "P-030",
+    "name": "Surge Patient #30 (Synthetic)",
+    "age": 28,
+    "gender": "Female",
+    "chief_complaint": "Corneal chemical/dust irritation",
+    "symptoms": [
+      "Severe eye pain",
+      "Photophobia",
+      "Blepharospasm"
+    ],
+    "pain_score": 7,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 82,
+      "systolic_bp": 124,
+      "diastolic_bp": 80,
+      "spo2": 99,
+      "resp_rate": 16,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 82,
+        "systolic_bp": 124,
+        "diastolic_bp": 80,
+        "spo2": 99,
+        "resp_rate": 16,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 20,
+    "elapsed_since_vital": 20,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_30"
+  },
+  {
+    "id": "P-031",
+    "name": "Surge Patient #31 (Synthetic)",
+    "age": 45,
+    "gender": "Male",
+    "chief_complaint": "Crush injury to left foot",
+    "symptoms": [
+      "Severe swelling",
+      "Ecchymosis",
+      "Inability to bear weight"
+    ],
+    "pain_score": 7,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 90,
+      "systolic_bp": 130,
+      "diastolic_bp": 84,
+      "spo2": 98,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 90,
+        "systolic_bp": 130,
+        "diastolic_bp": 84,
+        "spo2": 98,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 22,
+    "elapsed_since_vital": 22,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_31"
+  },
+  {
+    "id": "P-032",
+    "name": "Surge Patient #32 (Synthetic)",
+    "age": 23,
+    "gender": "Female",
+    "chief_complaint": "Superficial glass abrasions across face and neck",
+    "symptoms": [
+      "Multiple shallow cuts",
+      "Anxiety"
+    ],
+    "pain_score": 3,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 86,
+      "systolic_bp": 118,
+      "diastolic_bp": 76,
+      "spo2": 99,
+      "resp_rate": 16,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 86,
+        "systolic_bp": 118,
+        "diastolic_bp": 76,
+        "spo2": 99,
+        "resp_rate": 16,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 24,
+    "elapsed_since_vital": 24,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_32"
+  },
+  {
+    "id": "P-033",
+    "name": "Surge Patient #33 (Synthetic)",
+    "age": 34,
+    "gender": "Male",
+    "chief_complaint": "Severe dehydration and exhaustion in relief volunteer",
+    "symptoms": [
+      "Dry mucous membranes",
+      "Orthostasis",
+      "Cramping"
+    ],
+    "pain_score": 3,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 112,
+      "systolic_bp": 102,
+      "diastolic_bp": 66,
+      "spo2": 98,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 112,
+        "systolic_bp": 102,
+        "diastolic_bp": 66,
+        "spo2": 98,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 26,
+    "elapsed_since_vital": 26,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_33"
+  },
+  {
+    "id": "P-034",
+    "name": "Surge Patient #34 (Synthetic)",
+    "age": 74,
+    "gender": "Female",
+    "chief_complaint": "Acute exacerbation of chronic heart failure",
+    "symptoms": [
+      "Bilateral leg edema",
+      "Orthopnea",
+      "Crackles at lung bases"
+    ],
+    "pain_score": 2,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 102,
+      "systolic_bp": 168,
+      "diastolic_bp": 109,
+      "spo2": 91,
+      "resp_rate": 26,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 102,
+        "systolic_bp": 168,
+        "diastolic_bp": 109,
+        "spo2": 91,
+        "resp_rate": 26,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 28,
+    "elapsed_since_vital": 28,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_34"
+  },
+  {
+    "id": "P-035",
+    "name": "Surge Patient #35 (Synthetic)",
+    "age": 5,
+    "gender": "Male",
+    "chief_complaint": "Pediatric laceration to chin requiring sutures",
+    "symptoms": [
+      "Laceration 3cm",
+      "Hemostasis achieved"
+    ],
+    "pain_score": 5,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 115,
+      "systolic_bp": 92,
+      "diastolic_bp": 59,
+      "spo2": 99,
+      "resp_rate": 22,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 115,
+        "systolic_bp": 92,
+        "diastolic_bp": 59,
+        "spo2": 99,
+        "resp_rate": 22,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 30,
+    "elapsed_since_vital": 30,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_35"
+  },
+  {
+    "id": "P-036",
+    "name": "Surge Patient #36 (Synthetic)",
+    "age": 38,
+    "gender": "Female",
+    "chief_complaint": "Mild shoulder strain from lifting debris",
+    "symptoms": [
+      "Tenderness over deltoid",
+      "Full range of motion"
+    ],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 74,
+      "systolic_bp": 122,
+      "diastolic_bp": 79,
+      "spo2": 99,
+      "resp_rate": 14,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 74,
+        "systolic_bp": 122,
+        "diastolic_bp": 79,
+        "spo2": 99,
+        "resp_rate": 14,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 32,
+    "elapsed_since_vital": 32,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_36"
+  },
+  {
+    "id": "P-037",
+    "name": "Surge Patient #37 (Synthetic)",
+    "age": 49,
+    "gender": "Male",
+    "chief_complaint": "Tension pneumothorax suspicion post steering-wheel impact",
+    "symptoms": [
+      "Tracheal deviation",
+      "Unilateral absent breath sounds",
+      "Profound shock"
+    ],
+    "pain_score": 9,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 144,
+      "systolic_bp": 72,
+      "diastolic_bp": 46,
+      "spo2": 82,
+      "resp_rate": 38,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 144,
+        "systolic_bp": 72,
+        "diastolic_bp": 46,
+        "spo2": 82,
+        "resp_rate": 38,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 34,
+    "elapsed_since_vital": 34,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_37"
+  },
+  {
+    "id": "P-038",
+    "name": "Surge Patient #38 (Synthetic)",
+    "age": 86,
+    "gender": "Female",
+    "chief_complaint": "Subdural hematoma suspicion in anticoagulated elderly",
+    "symptoms": [
+      "Sudden severe headache",
+      "Lethargy",
+      "Unequal pupils"
+    ],
+    "pain_score": 8,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 62,
+      "systolic_bp": 188,
+      "diastolic_bp": 122,
+      "spo2": 95,
+      "resp_rate": 14,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 62,
+        "systolic_bp": 188,
+        "diastolic_bp": 122,
+        "spo2": 95,
+        "resp_rate": 14,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 36,
+    "elapsed_since_vital": 36,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_38"
+  },
+  {
+    "id": "P-039",
+    "name": "Surge Patient #39 (Synthetic)",
+    "age": 27,
+    "gender": "Male",
+    "chief_complaint": "Ankle inversion sprain during building evacuation",
+    "symptoms": [
+      "Mild edema",
+      "Walking with limp"
+    ],
+    "pain_score": 4,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 78,
+      "systolic_bp": 118,
+      "diastolic_bp": 76,
+      "spo2": 99,
+      "resp_rate": 14,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 78,
+        "systolic_bp": 118,
+        "diastolic_bp": 76,
+        "spo2": 99,
+        "resp_rate": 14,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 38,
+    "elapsed_since_vital": 38,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_39"
+  },
+  {
+    "id": "P-040",
+    "name": "Surge Patient #40 (Synthetic)",
+    "age": 21,
+    "gender": "Female",
+    "chief_complaint": "Diabetic ketoacidosis crisis during shelter stay",
+    "symptoms": [
+      "Kussmaul breathing",
+      "Fruity breath",
+      "Confusion",
+      "Extreme thirst"
+    ],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 132,
+      "systolic_bp": 96,
+      "diastolic_bp": 62,
+      "spo2": 98,
+      "resp_rate": 34,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 132,
+        "systolic_bp": 96,
+        "diastolic_bp": 62,
+        "spo2": 98,
+        "resp_rate": 34,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 40,
+    "elapsed_since_vital": 40,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_40"
+  },
+  {
+    "id": "P-041",
+    "name": "Surge Patient #41 (Synthetic)",
+    "age": 42,
+    "gender": "Male",
+    "chief_complaint": "Smoke inhalation and bronchospasm",
+    "symptoms": [
+      "Stridor",
+      "Cough",
+      "Dyspnea"
+    ],
+    "pain_score": 6,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 128,
+      "systolic_bp": 136,
+      "diastolic_bp": 88,
+      "spo2": 88,
+      "resp_rate": 30,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 128,
+        "systolic_bp": 136,
+        "diastolic_bp": 88,
+        "spo2": 88,
+        "resp_rate": 30,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 42,
+    "elapsed_since_vital": 42,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_41"
+  },
+  {
+    "id": "P-042",
+    "name": "Surge Patient #42 (Synthetic)",
+    "age": 29,
+    "gender": "Female",
+    "chief_complaint": "Deep shrapnel laceration to thigh",
+    "symptoms": [
+      "Active bleeding",
+      "Tachycardia"
+    ],
+    "pain_score": 8,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 115,
+      "systolic_bp": 105,
+      "diastolic_bp": 68,
+      "spo2": 97,
+      "resp_rate": 22,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 115,
+        "systolic_bp": 105,
+        "diastolic_bp": 68,
+        "spo2": 97,
+        "resp_rate": 22,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 44,
+    "elapsed_since_vital": 44,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_42"
+  },
+  {
+    "id": "P-043",
+    "name": "Surge Patient #43 (Synthetic)",
+    "age": 52,
+    "gender": "Male",
+    "chief_complaint": "Closed head injury with brief loss of consciousness",
+    "symptoms": [
+      "Confusion",
+      "Vomiting",
+      "Scalp hematoma"
+    ],
+    "pain_score": 7,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 95,
+      "systolic_bp": 148,
+      "diastolic_bp": 96,
+      "spo2": 96,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 95,
+        "systolic_bp": 148,
+        "diastolic_bp": 96,
+        "spo2": 96,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 46,
+    "elapsed_since_vital": 46,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_43"
+  },
+  {
+    "id": "P-044",
+    "name": "Surge Patient #44 (Synthetic)",
+    "age": 31,
+    "gender": "Female",
+    "chief_complaint": "Blunt abdominal trauma from crowd crush",
+    "symptoms": [
+      "Diffuse tenderness",
+      "Guarding"
+    ],
+    "pain_score": 8,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 110,
+      "systolic_bp": 98,
+      "diastolic_bp": 63,
+      "spo2": 97,
+      "resp_rate": 24,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 110,
+        "systolic_bp": 98,
+        "diastolic_bp": 63,
+        "spo2": 97,
+        "resp_rate": 24,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 48,
+    "elapsed_since_vital": 48,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_44"
+  },
+  {
+    "id": "P-045",
+    "name": "Surge Patient #45 (Synthetic)",
+    "age": 7,
+    "gender": "Male",
+    "chief_complaint": "Pediatric forearm fracture with displacement",
+    "symptoms": [
+      "Visible deformity",
+      "Severe pain",
+      "Crying"
+    ],
+    "pain_score": 9,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 130,
+      "systolic_bp": 98,
+      "diastolic_bp": 63,
+      "spo2": 99,
+      "resp_rate": 26,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 130,
+        "systolic_bp": 98,
+        "diastolic_bp": 63,
+        "spo2": 99,
+        "resp_rate": 26,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 5,
+    "elapsed_since_vital": 5,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_45"
+  },
+  {
+    "id": "P-046",
+    "name": "Surge Patient #46 (Synthetic)",
+    "age": 19,
+    "gender": "Female",
+    "chief_complaint": "Severe asthma attack triggered by dust and smoke",
+    "symptoms": [
+      "Wheezing",
+      "Speaking in 2-word phrases",
+      "Retractions"
+    ],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 135,
+      "systolic_bp": 128,
+      "diastolic_bp": 83,
+      "spo2": 90,
+      "resp_rate": 32,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 135,
+        "systolic_bp": 128,
+        "diastolic_bp": 83,
+        "spo2": 90,
+        "resp_rate": 32,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 7,
+    "elapsed_since_vital": 7,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_46"
+  },
+  {
+    "id": "P-047",
+    "name": "Surge Patient #47 (Synthetic)",
+    "age": 26,
+    "gender": "Male",
+    "chief_complaint": "Acute panic and hyperventilation syndrome",
+    "symptoms": [
+      "Tingling hands",
+      "Tachypnea",
+      "Carpopedal spasm"
+    ],
+    "pain_score": 2,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 118,
+      "systolic_bp": 138,
+      "diastolic_bp": 89,
+      "spo2": 100,
+      "resp_rate": 34,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 118,
+        "systolic_bp": 138,
+        "diastolic_bp": 89,
+        "spo2": 100,
+        "resp_rate": 34,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 9,
+    "elapsed_since_vital": 9,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_47"
+  },
+  {
+    "id": "P-048",
+    "name": "Surge Patient #48 (Synthetic)",
+    "age": 36,
+    "gender": "Female",
+    "chief_complaint": "Partial thickness burn to both forearms (10% TBSA)",
+    "symptoms": [
+      "Blistering",
+      "Erythema",
+      "Severe pain"
+    ],
+    "pain_score": 9,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 105,
+      "systolic_bp": 120,
+      "diastolic_bp": 78,
+      "spo2": 98,
+      "resp_rate": 20,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 105,
+        "systolic_bp": 120,
+        "diastolic_bp": 78,
+        "spo2": 98,
+        "resp_rate": 20,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 11,
+    "elapsed_since_vital": 11,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_48"
+  },
+  {
+    "id": "P-049",
+    "name": "Surge Patient #49 (Synthetic)",
+    "age": 82,
+    "gender": "Male",
+    "chief_complaint": "Geriatric fall during evacuation with hip pain",
+    "symptoms": [
+      "Shortened and externally rotated right leg"
+    ],
+    "pain_score": 8,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 88,
+      "systolic_bp": 142,
+      "diastolic_bp": 92,
+      "spo2": 94,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 88,
+        "systolic_bp": 142,
+        "diastolic_bp": 92,
+        "spo2": 94,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 13,
+    "elapsed_since_vital": 13,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_49"
+  },
+  {
+    "id": "P-050",
+    "name": "Surge Patient #50 (Synthetic)",
+    "age": 28,
+    "gender": "Female",
+    "chief_complaint": "Corneal chemical/dust irritation",
+    "symptoms": [
+      "Severe eye pain",
+      "Photophobia",
+      "Blepharospasm"
+    ],
+    "pain_score": 7,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 82,
+      "systolic_bp": 124,
+      "diastolic_bp": 80,
+      "spo2": 99,
+      "resp_rate": 16,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 82,
+        "systolic_bp": 124,
+        "diastolic_bp": 80,
+        "spo2": 99,
+        "resp_rate": 16,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 15,
+    "elapsed_since_vital": 15,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_50"
+  },
+  {
+    "id": "P-051",
+    "name": "Surge Patient #51 (Synthetic)",
+    "age": 45,
+    "gender": "Male",
+    "chief_complaint": "Crush injury to left foot",
+    "symptoms": [
+      "Severe swelling",
+      "Ecchymosis",
+      "Inability to bear weight"
+    ],
+    "pain_score": 7,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 90,
+      "systolic_bp": 130,
+      "diastolic_bp": 84,
+      "spo2": 98,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 90,
+        "systolic_bp": 130,
+        "diastolic_bp": 84,
+        "spo2": 98,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 17,
+    "elapsed_since_vital": 17,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_51"
+  },
+  {
+    "id": "P-052",
+    "name": "Surge Patient #52 (Synthetic)",
+    "age": 23,
+    "gender": "Female",
+    "chief_complaint": "Superficial glass abrasions across face and neck",
+    "symptoms": [
+      "Multiple shallow cuts",
+      "Anxiety"
+    ],
+    "pain_score": 3,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 86,
+      "systolic_bp": 118,
+      "diastolic_bp": 76,
+      "spo2": 99,
+      "resp_rate": 16,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 86,
+        "systolic_bp": 118,
+        "diastolic_bp": 76,
+        "spo2": 99,
+        "resp_rate": 16,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 19,
+    "elapsed_since_vital": 19,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_52"
+  },
+  {
+    "id": "P-053",
+    "name": "Surge Patient #53 (Synthetic)",
+    "age": 34,
+    "gender": "Male",
+    "chief_complaint": "Severe dehydration and exhaustion in relief volunteer",
+    "symptoms": [
+      "Dry mucous membranes",
+      "Orthostasis",
+      "Cramping"
+    ],
+    "pain_score": 3,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 112,
+      "systolic_bp": 102,
+      "diastolic_bp": 66,
+      "spo2": 98,
+      "resp_rate": 18,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 112,
+        "systolic_bp": 102,
+        "diastolic_bp": 66,
+        "spo2": 98,
+        "resp_rate": 18,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 21,
+    "elapsed_since_vital": 21,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_53"
+  },
+  {
+    "id": "P-054",
+    "name": "Surge Patient #54 (Synthetic)",
+    "age": 74,
+    "gender": "Female",
+    "chief_complaint": "Acute exacerbation of chronic heart failure",
+    "symptoms": [
+      "Bilateral leg edema",
+      "Orthopnea",
+      "Crackles at lung bases"
+    ],
+    "pain_score": 2,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 102,
+      "systolic_bp": 168,
+      "diastolic_bp": 109,
+      "spo2": 91,
+      "resp_rate": 26,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 102,
+        "systolic_bp": 168,
+        "diastolic_bp": 109,
+        "spo2": 91,
+        "resp_rate": 26,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 23,
+    "elapsed_since_vital": 23,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_54"
+  },
+  {
+    "id": "P-055",
+    "name": "Surge Patient #55 (Synthetic)",
+    "age": 5,
+    "gender": "Male",
+    "chief_complaint": "Pediatric laceration to chin requiring sutures",
+    "symptoms": [
+      "Laceration 3cm",
+      "Hemostasis achieved"
+    ],
+    "pain_score": 5,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 115,
+      "systolic_bp": 92,
+      "diastolic_bp": 59,
+      "spo2": 99,
+      "resp_rate": 22,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 115,
+        "systolic_bp": 92,
+        "diastolic_bp": 59,
+        "spo2": 99,
+        "resp_rate": 22,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 25,
+    "elapsed_since_vital": 25,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_55"
+  },
+  {
+    "id": "P-056",
+    "name": "Surge Patient #56 (Synthetic)",
+    "age": 38,
+    "gender": "Female",
+    "chief_complaint": "Mild shoulder strain from lifting debris",
+    "symptoms": [
+      "Tenderness over deltoid",
+      "Full range of motion"
+    ],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 74,
+      "systolic_bp": 122,
+      "diastolic_bp": 79,
+      "spo2": 99,
+      "resp_rate": 14,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 74,
+        "systolic_bp": 122,
+        "diastolic_bp": 79,
+        "spo2": 99,
+        "resp_rate": 14,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 27,
+    "elapsed_since_vital": 27,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_56"
+  },
+  {
+    "id": "P-057",
+    "name": "Surge Patient #57 (Synthetic)",
+    "age": 49,
+    "gender": "Male",
+    "chief_complaint": "Tension pneumothorax suspicion post steering-wheel impact",
+    "symptoms": [
+      "Tracheal deviation",
+      "Unilateral absent breath sounds",
+      "Profound shock"
+    ],
+    "pain_score": 9,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 144,
+      "systolic_bp": 72,
+      "diastolic_bp": 46,
+      "spo2": 82,
+      "resp_rate": 38,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 144,
+        "systolic_bp": 72,
+        "diastolic_bp": 46,
+        "spo2": 82,
+        "resp_rate": 38,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 29,
+    "elapsed_since_vital": 29,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_57"
+  },
+  {
+    "id": "P-058",
+    "name": "Surge Patient #58 (Synthetic)",
+    "age": 86,
+    "gender": "Female",
+    "chief_complaint": "Subdural hematoma suspicion in anticoagulated elderly",
+    "symptoms": [
+      "Sudden severe headache",
+      "Lethargy",
+      "Unequal pupils"
+    ],
+    "pain_score": 8,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 62,
+      "systolic_bp": 188,
+      "diastolic_bp": 122,
+      "spo2": 95,
+      "resp_rate": 14,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 62,
+        "systolic_bp": 188,
+        "diastolic_bp": 122,
+        "spo2": 95,
+        "resp_rate": 14,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 31,
+    "elapsed_since_vital": 31,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_58"
+  },
+  {
+    "id": "P-059",
+    "name": "Surge Patient #59 (Synthetic)",
+    "age": 27,
+    "gender": "Male",
+    "chief_complaint": "Ankle inversion sprain during building evacuation",
+    "symptoms": [
+      "Mild edema",
+      "Walking with limp"
+    ],
+    "pain_score": 4,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 78,
+      "systolic_bp": 118,
+      "diastolic_bp": 76,
+      "spo2": 99,
+      "resp_rate": 14,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 78,
+        "systolic_bp": 118,
+        "diastolic_bp": 76,
+        "spo2": 99,
+        "resp_rate": 14,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 33,
+    "elapsed_since_vital": 33,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SURGE_RECORD_59"
+  },
+  {
+    "id": "P-060",
+    "name": "Surge Patient #60 (Synthetic)",
+    "age": 21,
+    "gender": "Female",
+    "chief_complaint": "Diabetic ketoacidosis crisis during shelter stay",
+    "symptoms": [
+      "Kussmaul breathing",
+      "Fruity breath",
+      "Confusion",
+      "Extreme thirst"
+    ],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "injury_mechanism": "Disaster surge mass influx",
+    "initial_vitals": {
+      "heart_rate": 132,
+      "systolic_bp": 96,
+      "diastolic_bp": 62,
+      "spo2": 98,
+      "resp_rate": 34,
+      "temperature": 37.0
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 132,
+        "systolic_bp": 96,
+        "diastolic_bp": 62,
+        "spo2": 98,
+        "resp_rate": 34,
+        "temperature": 37.0,
+        "recorded_by": "Surge Rapid Triage"
+      }
+    ],
+    "total_waiting_mins": 35,
+    "elapsed_since_vital": 35,
+    "is_attended": true,
+    "attending_physician": "Dr. Surge Responder",
+    "scenario_tag": "SURGE_RECORD_60"
+  }
+]

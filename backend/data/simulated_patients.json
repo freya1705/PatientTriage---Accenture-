@@ -1,0 +1,772 @@
+[
+  {
+    "id": "P-001",
+    "name": "Alex Mercer (Synthetic)",
+    "age": 34,
+    "gender": "Male",
+    "chief_complaint": "Severe polytrauma post-motor vehicle collision",
+    "symptoms": ["Unresponsive", "Chest flail", "Hypotension", "Active hemorrhage"],
+    "pain_score": 0,
+    "has_medical_history": true,
+    "medical_history": ["None known"],
+    "injury_mechanism": "High-speed highway rollover (45 mph)",
+    "initial_vitals": {
+      "heart_rate": 138,
+      "systolic_bp": 78,
+      "diastolic_bp": 48,
+      "spo2": 91,
+      "resp_rate": 32,
+      "temperature": 35.8
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 138,
+        "systolic_bp": 78,
+        "diastolic_bp": 48,
+        "spo2": 91,
+        "resp_rate": 32,
+        "temperature": 35.8,
+        "recorded_by": "Triage Paramedic"
+      }
+    ],
+    "total_waiting_mins": 4,
+    "elapsed_since_vital": 4,
+    "is_attended": true,
+    "attending_physician": "Dr. Sarah Chen, MD (Trauma Lead)",
+    "scenario_tag": "CRITICAL_RESUSCITATION"
+  },
+  {
+    "id": "P-002",
+    "name": "Marcus Vance (Synthetic)",
+    "age": 58,
+    "gender": "Male",
+    "chief_complaint": "Acute crushing retrosternal chest pain",
+    "symptoms": ["Radiating to left shoulder and jaw", "Diaphoresis", "Shortness of breath"],
+    "pain_score": 8,
+    "has_medical_history": true,
+    "medical_history": ["Coronary Artery Disease", "Type 2 Diabetes", "Hyperlipidemia"],
+    "injury_mechanism": "Non-traumatic medical",
+    "initial_vitals": {
+      "heart_rate": 104,
+      "systolic_bp": 146,
+      "diastolic_bp": 92,
+      "spo2": 95,
+      "resp_rate": 22,
+      "temperature": 36.8
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 104,
+        "systolic_bp": 146,
+        "diastolic_bp": 92,
+        "spo2": 95,
+        "resp_rate": 22,
+        "temperature": 36.8,
+        "recorded_by": "Nurse Triage"
+      }
+    ],
+    "total_waiting_mins": 10,
+    "elapsed_since_vital": 10,
+    "is_attended": true,
+    "attending_physician": "Dr. Kevin Patel, MD (Cardiology Fellow)",
+    "scenario_tag": "STEMI_SUSPICION"
+  },
+  {
+    "id": "P-003",
+    "name": "Emma Watson (Synthetic)",
+    "age": 3,
+    "gender": "Female",
+    "chief_complaint": "Barking cough and severe inspiratory stridor",
+    "symptoms": ["Inspiratory stridor", "Subcostal retractions", "Restlessness", "Fever"],
+    "pain_score": 5,
+    "has_medical_history": true,
+    "medical_history": ["Mild asthma"],
+    "injury_mechanism": "Non-traumatic pediatric infection",
+    "initial_vitals": {
+      "heart_rate": 148,
+      "systolic_bp": 88,
+      "diastolic_bp": 54,
+      "spo2": 91,
+      "resp_rate": 48,
+      "temperature": 38.6
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 148,
+        "systolic_bp": 88,
+        "diastolic_bp": 54,
+        "spo2": 91,
+        "resp_rate": 48,
+        "temperature": 38.6,
+        "recorded_by": "Pediatric Triage Nurse"
+      }
+    ],
+    "total_waiting_mins": 6,
+    "elapsed_since_vital": 6,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "PEDIATRIC_CRITICAL"
+  },
+  {
+    "id": "P-004",
+    "name": "Sophia Martinez (Synthetic)",
+    "age": 34,
+    "gender": "Female",
+    "chief_complaint": "Acute right lower quadrant abdominal pain",
+    "symptoms": ["RLQ tenderness", "Nausea", "Low grade fever", "Anorexia"],
+    "pain_score": 7,
+    "has_medical_history": true,
+    "medical_history": ["No prior surgeries"],
+    "injury_mechanism": "Non-traumatic surgical",
+    "initial_vitals": {
+      "heart_rate": 92,
+      "systolic_bp": 118,
+      "diastolic_bp": 76,
+      "spo2": 99,
+      "resp_rate": 18,
+      "temperature": 38.2
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 92,
+        "systolic_bp": 118,
+        "diastolic_bp": 76,
+        "spo2": 99,
+        "resp_rate": 18,
+        "temperature": 38.2,
+        "recorded_by": "Intake Nurse"
+      }
+    ],
+    "total_waiting_mins": 22,
+    "elapsed_since_vital": 22,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "MODERATE_SURGICAL"
+  },
+  {
+    "id": "P-005",
+    "name": "Jordan Lee (Synthetic)",
+    "age": 22,
+    "gender": "Non-Binary",
+    "chief_complaint": "Distal right ankle twist while jogging",
+    "symptoms": ["Mild lateral swelling", "Bearing weight with mild limp"],
+    "pain_score": 3,
+    "has_medical_history": true,
+    "medical_history": ["None"],
+    "injury_mechanism": "Low-energy athletic twist",
+    "initial_vitals": {
+      "heart_rate": 72,
+      "systolic_bp": 116,
+      "diastolic_bp": 74,
+      "spo2": 99,
+      "resp_rate": 14,
+      "temperature": 36.6
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 72,
+        "systolic_bp": 116,
+        "diastolic_bp": 74,
+        "spo2": 99,
+        "resp_rate": 14,
+        "temperature": 36.6,
+        "recorded_by": "Intake Desk"
+      }
+    ],
+    "total_waiting_mins": 35,
+    "elapsed_since_vital": 35,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "LOW_ACUITY_FASTTRACK"
+  },
+  {
+    "id": "P-006",
+    "name": "David Kim (Synthetic)",
+    "age": 41,
+    "gender": "Male",
+    "chief_complaint": "High fever, chills, and dry cough for 3 days",
+    "symptoms": ["Chills", "Myalgias", "Mild photophobia"],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": ["Asthma (mild intermittent)"],
+    "injury_mechanism": "Viral/Bacterial infection",
+    "initial_vitals": {
+      "heart_rate": 102,
+      "systolic_bp": 122,
+      "diastolic_bp": 78,
+      "spo2": 97,
+      "resp_rate": 19,
+      "temperature": 39.4
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 102,
+        "systolic_bp": 122,
+        "diastolic_bp": 78,
+        "spo2": 97,
+        "resp_rate": 19,
+        "temperature": 39.4,
+        "recorded_by": "Intake Nurse"
+      }
+    ],
+    "total_waiting_mins": 18,
+    "elapsed_since_vital": 18,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "ADULT_FEVER"
+  },
+  {
+    "id": "P-007",
+    "name": "Liam Noah (Synthetic)",
+    "age": 1,
+    "gender": "Male",
+    "chief_complaint": "High fever, irritability and poor fluid intake",
+    "symptoms": ["Lethargy", "Decreased wet diapers", "High fever"],
+    "pain_score": 6,
+    "has_medical_history": true,
+    "medical_history": ["Born full-term, up to date on immunizations"],
+    "injury_mechanism": "Pediatric systemic infection",
+    "initial_vitals": {
+      "heart_rate": 162,
+      "systolic_bp": 82,
+      "diastolic_bp": 50,
+      "spo2": 96,
+      "resp_rate": 38,
+      "temperature": 39.3
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 162,
+        "systolic_bp": 82,
+        "diastolic_bp": 50,
+        "spo2": 96,
+        "resp_rate": 38,
+        "temperature": 39.3,
+        "recorded_by": "Pediatric Triage"
+      }
+    ],
+    "total_waiting_mins": 8,
+    "elapsed_since_vital": 8,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "PEDIATRIC_FEVER_VULNERABILITY"
+  },
+  {
+    "id": "P-008",
+    "name": "Eleanor Vance (Synthetic)",
+    "age": 79,
+    "gender": "Female",
+    "chief_complaint": "General weakness, mild confusion, and hypothermia",
+    "symptoms": ["Altered mental status", "Sluggish response", "Cool extremities"],
+    "pain_score": 1,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Geriatric occult sepsis",
+    "initial_vitals": {
+      "heart_rate": 108,
+      "systolic_bp": 94,
+      "diastolic_bp": 58,
+      "spo2": null,
+      "resp_rate": 26,
+      "temperature": 35.7
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 108,
+        "systolic_bp": 94,
+        "diastolic_bp": 58,
+        "spo2": null,
+        "resp_rate": 26,
+        "temperature": 35.7,
+        "recorded_by": "Triage Aide"
+      }
+    ],
+    "total_waiting_mins": 14,
+    "elapsed_since_vital": 14,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "GERIATRIC_SEPSIS_UNCERTAIN"
+  },
+  {
+    "id": "P-009",
+    "name": "Priya Sharma (Synthetic)",
+    "age": 62,
+    "gender": "Female",
+    "chief_complaint": "Vague persistent nausea, extreme fatigue, and dizziness",
+    "symptoms": ["Upper epigastric fullness", "Fatigue", "Cold clammy sensation"],
+    "pain_score": 2,
+    "has_medical_history": true,
+    "medical_history": ["Type 2 Diabetes (20 yrs)", "Hypertension"],
+    "injury_mechanism": "Atypical Cardiac Equivalent",
+    "initial_vitals": {
+      "heart_rate": 96,
+      "systolic_bp": 108,
+      "diastolic_bp": 68,
+      "spo2": 95,
+      "resp_rate": 20,
+      "temperature": 36.9
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 96,
+        "systolic_bp": 108,
+        "diastolic_bp": 68,
+        "spo2": 95,
+        "resp_rate": 20,
+        "temperature": 36.9,
+        "recorded_by": "Nurse Practitioner"
+      }
+    ],
+    "total_waiting_mins": 15,
+    "elapsed_since_vital": 15,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "AMBIGUOUS_FEMALE_CARDIAC"
+  },
+  {
+    "id": "P-010",
+    "name": "Tariq Al-Mansoor (Synthetic)",
+    "age": 28,
+    "gender": "Male",
+    "chief_complaint": "Deep forearm laceration with controlled venous bleeding",
+    "symptoms": ["Laceration 5cm", "Mild numbness in index finger"],
+    "pain_score": 6,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Industrial sheet metal cut",
+    "initial_vitals": {
+      "heart_rate": 84,
+      "systolic_bp": 128,
+      "diastolic_bp": 82,
+      "spo2": 98,
+      "resp_rate": 16,
+      "temperature": 36.7
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 84,
+        "systolic_bp": 128,
+        "diastolic_bp": 82,
+        "spo2": 98,
+        "resp_rate": 16,
+        "temperature": 36.7,
+        "recorded_by": "Intake Clerk"
+      }
+    ],
+    "total_waiting_mins": 25,
+    "elapsed_since_vital": 25,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "ZERO_HISTORY_FIRST_TIME"
+  },
+  {
+    "id": "P-011",
+    "name": "Carlos Gomez (Synthetic)",
+    "age": 45,
+    "gender": "Male",
+    "chief_complaint": "Shortness of breath and chest tightness on exertion",
+    "symptoms": ["Dyspnea", "Dry cough"],
+    "pain_score": 4,
+    "has_medical_history": false,
+    "medical_history": [],
+    "injury_mechanism": "Respiratory distress",
+    "initial_vitals": {
+      "heart_rate": 110,
+      "systolic_bp": null,
+      "diastolic_bp": null,
+      "spo2": null,
+      "resp_rate": null,
+      "temperature": 37.1
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 110,
+        "systolic_bp": null,
+        "diastolic_bp": null,
+        "spo2": null,
+        "resp_rate": null,
+        "temperature": 37.1,
+        "recorded_by": "Volunteer Intake"
+      }
+    ],
+    "total_waiting_mins": 12,
+    "elapsed_since_vital": 12,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "INCOMPLETE_VITALS_UNCERTAIN"
+  },
+  {
+    "id": "P-012",
+    "name": "Arthur Pendelton (Synthetic)",
+    "age": 68,
+    "gender": "Male",
+    "chief_complaint": "Acute exacerbation of COPD with productive purulent sputum",
+    "symptoms": ["Wheezing", "Accessory muscle use", "Severe dyspnea"],
+    "pain_score": 3,
+    "has_medical_history": true,
+    "medical_history": ["Severe COPD (Baseline SpO2 90%)", "Cor Pulmonale", "Tobacco use 40 pack-years"],
+    "injury_mechanism": "Chronic pulmonary decompensation",
+    "initial_vitals": {
+      "heart_rate": 118,
+      "systolic_bp": 142,
+      "diastolic_bp": 88,
+      "spo2": 87,
+      "resp_rate": 28,
+      "temperature": 37.9
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 118,
+        "systolic_bp": 142,
+        "diastolic_bp": 88,
+        "spo2": 87,
+        "resp_rate": 28,
+        "temperature": 37.9,
+        "recorded_by": "Respiratory Therapist"
+      }
+    ],
+    "total_waiting_mins": 11,
+    "elapsed_since_vital": 11,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "RETURNING_EHR_COPD"
+  },
+  {
+    "id": "P-013",
+    "name": "Dmitri Volkov (Synthetic)",
+    "age": 39,
+    "gender": "Male",
+    "chief_complaint": "Severe spasmodic left flank pain radiating to groin",
+    "symptoms": ["Agitation from pain", "Nausea", "Microscopic hematuria"],
+    "pain_score": 10,
+    "has_medical_history": true,
+    "medical_history": ["Nephrolithiasis (2022)"],
+    "injury_mechanism": "Renal colic",
+    "initial_vitals": {
+      "heart_rate": 88,
+      "systolic_bp": 138,
+      "diastolic_bp": 86,
+      "spo2": 99,
+      "resp_rate": 18,
+      "temperature": 36.7
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 88,
+        "systolic_bp": 138,
+        "diastolic_bp": 86,
+        "spo2": 99,
+        "resp_rate": 18,
+        "temperature": 36.7,
+        "recorded_by": "Triage Nurse"
+      }
+    ],
+    "total_waiting_mins": 20,
+    "elapsed_since_vital": 20,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "HIGH_PAIN_STABLE_VITALS"
+  },
+  {
+    "id": "P-014",
+    "name": "Harold Jenkins (Synthetic)",
+    "age": 71,
+    "gender": "Male",
+    "chief_complaint": "Mild general fatigue and lightheadedness",
+    "symptoms": ["Under-reporting pain", "Cool extremities", "Slow mentation"],
+    "pain_score": 2,
+    "has_medical_history": true,
+    "medical_history": ["Type 2 Diabetes (diabetic neuropathy)", "Peripheral vascular disease"],
+    "injury_mechanism": "Diabetic autonomic crisis / silent shock",
+    "initial_vitals": {
+      "heart_rate": 116,
+      "systolic_bp": 84,
+      "diastolic_bp": 52,
+      "spo2": 93,
+      "resp_rate": 24,
+      "temperature": 36.1
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 116,
+        "systolic_bp": 84,
+        "diastolic_bp": 52,
+        "spo2": 93,
+        "resp_rate": 24,
+        "temperature": 36.1,
+        "recorded_by": "Nurse Triage"
+      }
+    ],
+    "total_waiting_mins": 16,
+    "elapsed_since_vital": 16,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "PAIN_UNDERREPORTING_SHOCK"
+  },
+  {
+    "id": "P-015",
+    "name": "Tyler Brooks (Synthetic)",
+    "age": 29,
+    "gender": "Male",
+    "chief_complaint": "Blunt abdominal trauma after scaffolding fall",
+    "symptoms": ["Mild flank bruising", "Initially stable"],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": ["None"],
+    "injury_mechanism": "Fall from 8 feet",
+    "initial_vitals": {
+      "heart_rate": 82,
+      "systolic_bp": 124,
+      "diastolic_bp": 78,
+      "spo2": 98,
+      "resp_rate": 16,
+      "temperature": 36.8
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 82,
+        "systolic_bp": 124,
+        "diastolic_bp": 78,
+        "spo2": 98,
+        "resp_rate": 16,
+        "temperature": 36.8,
+        "recorded_by": "Intake Triage"
+      },
+      {
+        "timestamp_mins": 30,
+        "heart_rate": 124,
+        "systolic_bp": 94,
+        "diastolic_bp": 60,
+        "spo2": 96,
+        "resp_rate": 24,
+        "temperature": 36.5,
+        "recorded_by": "Repeat Observation"
+      }
+    ],
+    "total_waiting_mins": 32,
+    "elapsed_since_vital": 2,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "SILENT_INTERNAL_BLEED_DETERIORATING"
+  },
+  {
+    "id": "P-016",
+    "name": "Nadia Petrova (Synthetic)",
+    "age": 50,
+    "gender": "Female",
+    "chief_complaint": "Moderate asthma wheezing post viral cold",
+    "symptoms": ["Expiratory wheeze", "Intermittent cough"],
+    "pain_score": 3,
+    "has_medical_history": true,
+    "medical_history": ["Asthma", "Allergic rhinitis"],
+    "injury_mechanism": "Reactive airway",
+    "initial_vitals": {
+      "heart_rate": 94,
+      "systolic_bp": 132,
+      "diastolic_bp": 84,
+      "spo2": 95,
+      "resp_rate": 20,
+      "temperature": 37.2
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 94,
+        "systolic_bp": 132,
+        "diastolic_bp": 84,
+        "spo2": 95,
+        "resp_rate": 20,
+        "temperature": 37.2,
+        "recorded_by": "Intake Nurse"
+      }
+    ],
+    "total_waiting_mins": 48,
+    "elapsed_since_vital": 48,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "STALE_OBSERVATION_SAFETY_EXPIRED"
+  },
+  {
+    "id": "P-017",
+    "name": "Grace Hopper (Synthetic)",
+    "age": 64,
+    "gender": "Female",
+    "chief_complaint": "Worsening viral pneumonia with progressive hypoxia",
+    "symptoms": ["Productive cough", "Increasing breathlessness while seated"],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": ["Hypertension"],
+    "injury_mechanism": "Lower respiratory tract infection",
+    "initial_vitals": {
+      "heart_rate": 92,
+      "systolic_bp": 130,
+      "diastolic_bp": 80,
+      "spo2": 96,
+      "resp_rate": 18,
+      "temperature": 38.1
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 92,
+        "systolic_bp": 130,
+        "diastolic_bp": 80,
+        "spo2": 96,
+        "resp_rate": 18,
+        "temperature": 38.1,
+        "recorded_by": "Intake Nurse"
+      },
+      {
+        "timestamp_mins": 15,
+        "heart_rate": 104,
+        "systolic_bp": 128,
+        "diastolic_bp": 78,
+        "spo2": 93,
+        "resp_rate": 22,
+        "temperature": 38.3,
+        "recorded_by": "Waiting Room Check"
+      },
+      {
+        "timestamp_mins": 25,
+        "heart_rate": 118,
+        "systolic_bp": 122,
+        "diastolic_bp": 76,
+        "spo2": 89,
+        "resp_rate": 28,
+        "temperature": 38.5,
+        "recorded_by": "Rapid Sensor Alert"
+      }
+    ],
+    "total_waiting_mins": 28,
+    "elapsed_since_vital": 3,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "RAPID_HYPOXIA_TOP_RANK_HERO"
+  },
+  {
+    "id": "P-018",
+    "name": "Samuel O'Connor (Synthetic)",
+    "age": 55,
+    "gender": "Male",
+    "chief_complaint": "Intermittent palpitations, dizziness, and mild nausea",
+    "symptoms": ["Fluttering chest sensation", "Lightheadedness upon standing"],
+    "pain_score": 3,
+    "has_medical_history": true,
+    "medical_history": ["Paroxysmal Atrial Fibrillation"],
+    "injury_mechanism": "Arrhythmia",
+    "initial_vitals": {
+      "heart_rate": 128,
+      "systolic_bp": 112,
+      "diastolic_bp": 74,
+      "spo2": 96,
+      "resp_rate": 18,
+      "temperature": 36.8
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 128,
+        "systolic_bp": 112,
+        "diastolic_bp": 74,
+        "spo2": 96,
+        "resp_rate": 18,
+        "temperature": 36.8,
+        "recorded_by": "Intake Nurse"
+      }
+    ],
+    "total_waiting_mins": 24,
+    "elapsed_since_vital": 24,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "CONFLICTING_SYMPTOMS_ARRHYTHMIA"
+  },
+  {
+    "id": "P-019",
+    "name": "Chloe Bennett (Synthetic)",
+    "age": 24,
+    "gender": "Female",
+    "chief_complaint": "Sore throat and painful swallowing for 2 days",
+    "symptoms": ["Tonsillar erythema", "No airway swelling", "Able to tolerate fluids"],
+    "pain_score": 4,
+    "has_medical_history": true,
+    "medical_history": ["None"],
+    "injury_mechanism": "Upper respiratory viral pharyngitis",
+    "initial_vitals": {
+      "heart_rate": 76,
+      "systolic_bp": 114,
+      "diastolic_bp": 72,
+      "spo2": 99,
+      "resp_rate": 14,
+      "temperature": 37.3
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 76,
+        "systolic_bp": 114,
+        "diastolic_bp": 72,
+        "spo2": 99,
+        "resp_rate": 14,
+        "temperature": 37.3,
+        "recorded_by": "Fast Track Nurse"
+      }
+    ],
+    "total_waiting_mins": 40,
+    "elapsed_since_vital": 40,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "BENIGN_PHARYNGITIS_STABLE"
+  },
+  {
+    "id": "P-020",
+    "name": "Robert Taylor (Synthetic)",
+    "age": 60,
+    "gender": "Male",
+    "chief_complaint": "Mild bilateral tension headache and elevated home BP reading",
+    "symptoms": ["Occipital tightness", "No visual changes", "No focal weakness"],
+    "pain_score": 3,
+    "has_medical_history": true,
+    "medical_history": ["Essential Hypertension (missed 2 doses)"],
+    "injury_mechanism": "Medication non-adherence",
+    "initial_vitals": {
+      "heart_rate": 80,
+      "systolic_bp": 156,
+      "diastolic_bp": 94,
+      "spo2": 98,
+      "resp_rate": 16,
+      "temperature": 36.6
+    },
+    "vital_history": [
+      {
+        "timestamp_mins": 0,
+        "heart_rate": 80,
+        "systolic_bp": 156,
+        "diastolic_bp": 94,
+        "spo2": 98,
+        "resp_rate": 16,
+        "temperature": 36.6,
+        "recorded_by": "Triage Desk"
+      }
+    ],
+    "total_waiting_mins": 45,
+    "elapsed_since_vital": 45,
+    "is_attended": false,
+    "attending_physician": null,
+    "scenario_tag": "CONTROLLED_HYPERTENSION_ROUTINE"
+  }
+]
