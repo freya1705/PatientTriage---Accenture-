@@ -1,122 +1,67 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React from 'react';
+import { TriageProvider, useTriage } from './context/TriageContext';
+import { Navbar } from './components/Navbar';
+import { Dashboard } from './pages/Dashboard';
+import { IntakePage } from './pages/IntakePage';
+import { PatientDetailPage } from './pages/PatientDetailPage';
+import { AuditPage } from './pages/AuditPage';
+import { PrivacyPage } from './pages/PrivacyPage';
+import { OverrideModal } from './components/OverrideModal';
+import { WhyExplanationModal } from './components/WhyExplanationModal';
+import { VitalTrendModal } from './components/VitalTrendModal';
 
-function App() {
-  const [count, setCount] = useState(0)
+const AppContent = () => {
+  const { activeTab, toastMessage } = useTriage();
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+      <Navbar />
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      {/* Global Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-5 right-5 z-50 animate-bounce">
+          <div
+            className={`px-4 py-3 rounded-2xl shadow-2xl border text-xs font-bold flex items-center space-x-2 ${
+              toastMessage.type === 'error'
+                ? 'bg-red-950 text-red-300 border-red-800 shadow-red-950/50'
+                : toastMessage.type === 'warning'
+                ? 'bg-amber-950 text-amber-300 border-amber-800 shadow-amber-950/50'
+                : 'bg-emerald-950 text-emerald-300 border-emerald-800 shadow-emerald-950/50'
+            }`}
+          >
+            <span>{toastMessage.text}</span>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      )}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Main Content Area */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        {activeTab === 'dashboard' && <Dashboard />}
+        {activeTab === 'intake' && <IntakePage />}
+        {activeTab === 'patient-detail' && <PatientDetailPage />}
+        {activeTab === 'audit' && <AuditPage />}
+        {activeTab === 'privacy' && <PrivacyPage />}
+      </main>
+
+      {/* Global Interactive Modals */}
+      <OverrideModal />
+      <WhyExplanationModal />
+      <VitalTrendModal />
+
+      {/* Clean Modern Footer */}
+      <footer className="border-t border-slate-900 bg-slate-950 py-4 text-center text-xs text-slate-500">
+        <p>
+          PatientTriage.ai &bull; Accenture Innovation Challenge 2026 Prototype &bull; Clinical Decision-Support & Continuous Safety Intelligence
+        </p>
+      </footer>
+    </div>
+  );
+};
+
+export default function App() {
+  return (
+    <TriageProvider>
+      <AppContent />
+    </TriageProvider>
+  );
 }
-
-export default App
