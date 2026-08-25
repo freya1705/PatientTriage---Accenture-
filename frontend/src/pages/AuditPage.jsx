@@ -40,22 +40,22 @@ export const AuditPage = () => {
   return (
     <div className="space-y-6 pb-12">
       {/* Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
+      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-800">
-              <ShieldCheck className="w-6 h-6" />
+            <div className="p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <h1 className="text-xl font-black text-white tracking-tight">
-                  Clinical Audit & Regulatory Governance Ledger
+                <h1 className="text-base font-bold text-slate-900 tracking-tight">
+                  Clinical Audit &amp; Regulatory Governance Ledger
                 </h1>
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
-                  HIPAA & GDPR Article 30 Compliant
+                <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  HIPAA &amp; GDPR Article 30
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 Immutable chronological ledger recording AI inferences, uncertainty detections, and clinician overrides.
               </p>
             </div>
@@ -63,117 +63,95 @@ export const AuditPage = () => {
 
           <button
             onClick={fetchLogs}
-            className="p-2 rounded-xl bg-slate-950 border border-slate-700 text-slate-300 hover:text-white transition-colors self-start sm:self-auto"
+            className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors self-start sm:self-auto"
             title="Refresh Audit Logs"
           >
-            <RefreshCw className="w-4 h-4" />
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           </button>
         </div>
       </div>
 
-      {/* Filter and Search Bar */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="relative">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
-            <input
-              type="text"
-              placeholder="Search by Patient ID, Role, Reason..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="bg-slate-950 border border-slate-700 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 w-64"
-            />
+      {/* Filter and Table Card */}
+      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-4">
+        {/* Search and Filters */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div className="flex items-center space-x-2">
+            <div className="relative">
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+              <input
+                type="text"
+                placeholder="Search patient, role, action..."
+                value={search}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 focus:bg-white focus:border-cyan-600 w-56"
+              />
+            </div>
+
+            <select
+              value={filterType}
+              onChange={(e) => setFilterType(e.target.value)}
+              className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 focus:bg-white focus:border-cyan-600"
+            >
+              <option value="ALL">All Event Types</option>
+              <option value="CLINICIAN_OVERRIDE">Clinician Overrides</option>
+              <option value="NEW_PATIENT_INTAKE">Patient Intakes</option>
+              <option value="VITAL_SIGNS_UPDATED">Vital Sign Updates</option>
+              <option value="RAPID_DETERIORATION_ALERT">Deterioration Alerts</option>
+              <option value="SURGE_MODE_ACTIVATED">Surge Events</option>
+            </select>
           </div>
 
-          <select
-            value={filterType}
-            onChange={(e) => setFilterType(e.target.value)}
-            className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-cyan-500"
-          >
-            <option value="ALL">All Event Types</option>
-            <option value="CLINICIAN_OVERRIDE">Clinician Overrides Only</option>
-            <option value="NEW_PATIENT_INTAKE">Intake Assessments</option>
-            <option value="VITAL_SIGNS_UPDATED">Vital Updates & Trajectories</option>
-            <option value="RAPID_DETERIORATION_ALERT">Deterioration Alerts</option>
-            <option value="SURGE_MODE_ACTIVATED">Surge Events</option>
-          </select>
+          <span className="text-xs text-slate-500 font-medium">
+            Showing {filteredLogs.length} audit entries
+          </span>
         </div>
 
-        <div className="text-xs text-slate-400">
-          Showing <strong className="text-slate-200">{filteredLogs.length}</strong> immutable records
-        </div>
-      </div>
-
-      {/* Audit Log Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl overflow-hidden">
+        {/* Audit Table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-950/60 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800">
+          <table className="w-full text-left text-xs text-slate-700">
+            <thead className="bg-slate-50 text-[11px] font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-200">
               <tr>
-                <th className="py-3 px-3">Timestamp</th>
-                <th className="py-3 px-3">Event Type</th>
-                <th className="py-3 px-2">Patient ID</th>
-                <th className="py-3 px-3">Clinician / Role</th>
-                <th className="py-3 px-4">Outcome & Clinical Rationale</th>
-                <th className="py-3 px-2">Status</th>
+                <th className="py-2.5 px-3">Timestamp (UTC)</th>
+                <th className="py-2.5 px-2">Patient ID</th>
+                <th className="py-2.5 px-3">Event Type</th>
+                <th className="py-2.5 px-3">Clinician Role</th>
+                <th className="py-2.5 px-4">Action Rationale / Payload</th>
+                <th className="py-2.5 px-2">Outcome</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-mono text-[11px]">
-              {filteredLogs.map((log) => {
-                const isOverride = log.event_type === 'CLINICIAN_OVERRIDE';
-                const isDeterioration = log.event_type === 'RAPID_DETERIORATION_ALERT';
-
-                return (
-                  <tr
-                    key={log.id}
-                    className={`hover:bg-slate-800/40 transition-colors ${
-                      isOverride ? 'bg-indigo-950/20' : isDeterioration ? 'bg-red-950/20' : ''
-                    }`}
-                  >
-                    <td className="py-3 px-3 whitespace-nowrap text-slate-400 font-sans">
-                      {new Date(log.timestamp).toLocaleString()}
-                    </td>
-
-                    <td className="py-3 px-3 whitespace-nowrap">
-                      <span
-                        className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                          isOverride
-                            ? 'bg-indigo-950 text-indigo-300 border border-indigo-700'
-                            : isDeterioration
-                            ? 'bg-red-950 text-red-300 border border-red-700'
-                            : 'bg-slate-800 text-slate-300 border border-slate-700'
-                        }`}
-                      >
-                        {log.event_type}
-                      </span>
-                    </td>
-
-                    <td className="py-3 px-2 whitespace-nowrap font-bold text-cyan-400">
-                      {log.patient_id}
-                    </td>
-
-                    <td className="py-3 px-3 whitespace-nowrap text-slate-300 font-sans">
-                      {log.clinician_role || 'Auto-Logged AI System'}
-                    </td>
-
-                    <td className="py-3 px-4 font-sans text-slate-200 max-w-md">
-                      <div>{log.outcome}</div>
-                      {log.override_reason && (
-                        <div className="mt-1 text-indigo-300 font-medium text-[11px]">
-                          <strong>Clinical Override Reason:</strong> "{log.override_reason}"
-                        </div>
-                      )}
-                    </td>
-
-                    <td className="py-3 px-2 whitespace-nowrap">
-                      <span className="text-emerald-400 flex items-center space-x-1 text-[10px] font-bold">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>VERIFIED</span>
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
+            <tbody className="divide-y divide-slate-100 font-sans text-xs">
+              {filteredLogs.map((log) => (
+                <tr key={log.id} className="hover:bg-slate-50 transition-colors">
+                  <td className="py-2.5 px-3 font-mono text-[11px] text-slate-500 whitespace-nowrap">
+                    {new Date(log.timestamp).toLocaleTimeString()}
+                  </td>
+                  <td className="py-2.5 px-2 font-bold text-cyan-800 whitespace-nowrap">
+                    {log.patient_id || 'SYSTEM'}
+                  </td>
+                  <td className="py-2.5 px-3 whitespace-nowrap">
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-semibold border ${
+                        log.event_type === 'CLINICIAN_OVERRIDE'
+                          ? 'bg-purple-50 text-purple-700 border-purple-200'
+                          : log.event_type === 'RAPID_DETERIORATION_ALERT'
+                          ? 'bg-rose-50 text-rose-700 border-rose-200'
+                          : 'bg-slate-100 text-slate-700 border-slate-200'
+                      }`}
+                    >
+                      {log.event_type}
+                    </span>
+                  </td>
+                  <td className="py-2.5 px-3 text-slate-700 font-medium whitespace-nowrap">
+                    {log.clinician_role}
+                  </td>
+                  <td className="py-2.5 px-4 text-slate-600 max-w-md truncate">
+                    {log.action_rationale}
+                  </td>
+                  <td className="py-2.5 px-2 font-semibold text-slate-800 whitespace-nowrap">
+                    {log.outcome}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

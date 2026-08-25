@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTriage } from '../context/TriageContext';
 import { KPICards } from '../components/KPICards';
 import { ActionQueue } from '../components/ActionQueue';
-import { ActionSidebar } from '../components/ActionSidebar';
+import { SafetySummaryPanel } from '../components/SafetySummaryPanel';
 import {
   Search,
   RefreshCw,
@@ -26,6 +26,7 @@ export const Dashboard = () => {
     viewPatientDetail,
     setWhyModalPatient,
     setTrendModalPatient,
+    setOverrideModalPatient,
     handleSimulateDeterioration
   } = useTriage();
 
@@ -33,14 +34,14 @@ export const Dashboard = () => {
   const [levelFilter, setLevelFilter] = useState('ALL');
   const [failureCatFilter, setFailureCatFilter] = useState('ALL');
   const [stationFilter, setStationFilter] = useState('ALL');
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showRightPanel, setShowRightPanel] = useState(true);
 
   if (loading && !queueData) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center space-y-3">
-          <Activity className="w-10 h-10 text-cyan-400 animate-spin mx-auto" />
-          <p className="text-sm font-semibold text-slate-400">Loading live emergency safety intelligence...</p>
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="text-center space-y-2">
+          <Activity className="w-8 h-8 text-cyan-700 animate-spin mx-auto" />
+          <p className="text-xs font-semibold text-slate-500">Loading live emergency command center...</p>
         </div>
       </div>
     );
@@ -83,35 +84,34 @@ export const Dashboard = () => {
       {/* Top KPI Section */}
       <KPICards />
 
-      {/* Main Cockpit: 2-Column Responsive Layout with ActionSidebar */}
+      {/* 2-Zone Workspace (Main Workspace + Right Safety Summary Panel) */}
       <div className="flex flex-col lg:flex-row items-start gap-6">
-        {/* Left / Center: Action Queue & Monitored Census (Flex-1) */}
+        {/* Center Workspace: Live Action Queue & Census Table */}
         <div className="flex-1 w-full space-y-6 min-w-0">
           {/* Hero: Live Action Priority Queue */}
           <ActionQueue />
 
           {/* Complete Patient Census Section */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
               <div>
                 <div className="flex items-center space-x-2">
-                  <h2 className="text-base font-extrabold text-white tracking-tight">
-                    All Monitored Emergency Patients ({filteredPatients.length} / {allPatients.length})
+                  <h2 className="text-sm font-bold text-slate-900 tracking-tight">
+                    Emergency Patient Census ({filteredPatients.length} of {allPatients.length})
                   </h2>
                   {stationFilter !== 'ALL' && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-950 text-cyan-300 border border-cyan-800">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                       Station: {stationFilter}
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Continuous surveillance census organized across the 5 failure modes of traditional triage.
                 </p>
               </div>
 
-              {/* Search and Controls */}
+              {/* Search, Filter, and View Controls */}
               <div className="flex flex-wrap items-center gap-2">
-                {/* Search Input */}
                 <div className="relative">
                   <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
                   <input
@@ -119,38 +119,35 @@ export const Dashboard = () => {
                     placeholder="Search ID, name, complaint..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 w-44 sm:w-52"
+                    className="bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-cyan-600 focus:bg-white w-44 sm:w-52"
                   />
                 </div>
 
-                {/* Level Filter */}
                 <select
                   value={levelFilter}
                   onChange={(e) => setLevelFilter(e.target.value)}
-                  className="bg-slate-950 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-cyan-500"
+                  className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 focus:outline-none focus:border-cyan-600 focus:bg-white"
                 >
                   <option value="ALL">All Levels</option>
                   <option value="1">Level 1 (Immediate)</option>
                   <option value="2">Level 2 (Emergent)</option>
                   <option value="3">Level 3 (Urgent)</option>
-                  <option value="4">Level 4 (Less Urgent)</option>
+                  <option value="4">Level 4 (Semi-Urgent)</option>
                   <option value="5">Level 5 (Non-Urgent)</option>
                 </select>
 
-                {/* Toggle Sidebar Button */}
                 <button
-                  onClick={() => setShowSidebar(!showSidebar)}
-                  className="p-1.5 rounded-xl bg-slate-950 border border-slate-700 text-slate-300 hover:text-white hidden lg:flex items-center space-x-1 text-xs"
-                  title="Toggle Action Sidebar"
+                  onClick={() => setShowRightPanel(!showRightPanel)}
+                  className="p-1.5 rounded-lg border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-50 hidden lg:flex items-center space-x-1 text-xs"
+                  title="Toggle Safety Summary Panel"
                 >
-                  {showSidebar ? <PanelRightClose className="w-4 h-4" /> : <PanelRightOpen className="w-4 h-4 text-cyan-400" />}
+                  {showRightPanel ? <PanelRightClose className="w-4 h-4" /> : <PanelRightOpen className="w-4 h-4 text-cyan-700" />}
                 </button>
 
-                {/* Refresh Button */}
                 <button
                   onClick={fetchQueue}
-                  className="p-2 rounded-xl bg-slate-950 border border-slate-700 text-slate-300 hover:text-white transition-colors"
-                  title="Refresh live census"
+                  className="p-1.5 rounded-lg border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors"
+                  title="Refresh census"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                 </button>
@@ -159,18 +156,18 @@ export const Dashboard = () => {
 
             {/* 5 Failure Mode Quick Filter Tabs */}
             <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-xs">
-              <span className="text-slate-400 font-bold text-[11px] shrink-0 mr-1 flex items-center space-x-1">
-                <Layers className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="text-slate-500 font-semibold text-[11px] shrink-0 mr-1 flex items-center space-x-1">
+                <Layers className="w-3.5 h-3.5 text-slate-400" />
                 <span>Failure Mode:</span>
               </span>
               {failureCategories.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setFailureCatFilter(cat.id)}
-                  className={`px-2.5 py-1 rounded-lg font-semibold text-[11px] shrink-0 transition-all ${
+                  className={`px-2.5 py-1 rounded-md font-semibold text-[11px] shrink-0 transition-all ${
                     failureCatFilter === cat.id
-                      ? 'bg-cyan-600 text-white shadow-sm'
-                      : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800'
+                      ? 'bg-slate-900 text-white shadow-xs'
+                      : 'bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200'
                   }`}
                 >
                   {cat.label}
@@ -178,77 +175,73 @@ export const Dashboard = () => {
               ))}
             </div>
 
-            {/* Patient Table */}
+            {/* Patient Census Table */}
             <div className="overflow-x-auto mt-2">
-              <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-slate-950/60 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800">
+              <table className="w-full text-left text-xs text-slate-700">
+                <thead className="bg-slate-50 text-[11px] font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-200">
                   <tr>
-                    <th className="py-3 px-3">Patient</th>
-                    <th className="py-3 px-2">Failure Mode</th>
-                    <th className="py-3 px-2">Triage Level</th>
-                    <th className="py-3 px-3">Chief Complaint</th>
-                    <th className="py-3 px-2">Latest SpO₂</th>
-                    <th className="py-3 px-2">Safety State</th>
-                    <th className="py-3 px-2">Coverage</th>
-                    <th className="py-3 px-3 text-right">Actions</th>
+                    <th className="py-2.5 px-3">Patient</th>
+                    <th className="py-2.5 px-2">Failure Mode</th>
+                    <th className="py-2.5 px-2">Triage Level</th>
+                    <th className="py-2.5 px-3">Chief Complaint</th>
+                    <th className="py-2.5 px-2">SpO₂</th>
+                    <th className="py-2.5 px-2">Safety State</th>
+                    <th className="py-2.5 px-2">Coverage</th>
+                    <th className="py-2.5 px-3 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-100">
                   {filteredPatients.map((p) => (
-                    <tr key={p.id} className="hover:bg-slate-800/40 transition-colors">
-                      <td className="py-3 px-3 font-bold text-white whitespace-nowrap">
-                        <span className="text-cyan-400">{p.id}</span>
-                        <div className="text-[11px] font-normal text-slate-400">{p.name}</div>
+                    <tr key={p.id} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="py-3 px-3 font-semibold text-slate-900 whitespace-nowrap">
+                        <span className="text-cyan-800 font-bold">{p.id}</span>
+                        <div className="text-[11px] font-normal text-slate-500">{p.name}</div>
                       </td>
 
                       <td className="py-3 px-2 whitespace-nowrap">
-                        <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
-                            p.failure_mode_category?.color || 'bg-slate-800 text-slate-300 border-slate-700'
-                          }`}
-                        >
+                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                           {p.failure_mode_category?.badge || 'Standard'}
                         </span>
                       </td>
 
                       <td className="py-3 px-2 whitespace-nowrap">
                         <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                          className={`px-2 py-0.5 rounded text-[10px] font-semibold border ${
                             p.display_triage_level === 1
-                              ? 'bg-red-950 text-red-300 border-red-800'
+                              ? 'bg-rose-50 text-rose-700 border-rose-200'
                               : p.display_triage_level === 2
-                              ? 'bg-orange-950 text-orange-300 border-orange-800'
+                              ? 'bg-orange-50 text-orange-700 border-orange-200'
                               : p.display_triage_level === 3
-                              ? 'bg-amber-950 text-amber-300 border-amber-800'
-                              : 'bg-blue-950 text-blue-300 border-blue-800'
+                              ? 'bg-amber-50 text-amber-700 border-amber-200'
+                              : 'bg-blue-50 text-blue-700 border-blue-200'
                           }`}
                         >
                           L{p.display_triage_level} {p.is_overridden ? '✏️' : ''}
                         </span>
                       </td>
 
-                      <td className="py-3 px-3 max-w-xs truncate font-medium text-slate-200">
+                      <td className="py-3 px-3 max-w-xs truncate font-medium text-slate-800">
                         {p.chief_complaint}
                       </td>
 
                       <td className="py-3 px-2 whitespace-nowrap">
                         {p.latest_vitals?.spo2 ? (
-                          <span className={p.latest_vitals.spo2 < 92 ? 'text-red-400 font-bold' : 'text-slate-200'}>
+                          <span className={p.latest_vitals.spo2 < 92 ? 'text-rose-700 font-bold' : 'text-slate-800'}>
                             {p.latest_vitals.spo2}%
                           </span>
                         ) : (
-                          <span className="text-purple-400 font-bold">MISSING</span>
+                          <span className="text-purple-700 font-semibold">MISSING</span>
                         )}
                       </td>
 
                       <td className="py-3 px-2 whitespace-nowrap">
                         <span
-                          className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                          className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
                             p.safety_status === 'EXPIRED'
-                              ? 'bg-red-950 text-red-400 border border-red-800'
+                              ? 'bg-rose-50 text-rose-700 border-rose-200'
                               : p.safety_status === 'EXPIRING_SOON'
-                              ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                              : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                              ? 'bg-amber-50 text-amber-700 border-amber-200'
+                              : 'bg-emerald-50 text-emerald-700 border-emerald-200'
                           }`}
                         >
                           {p.safety_status}
@@ -257,7 +250,7 @@ export const Dashboard = () => {
 
                       <td className="py-3 px-2 whitespace-nowrap">
                         {p.is_attended ? (
-                          <span className="text-emerald-400 text-[11px] font-semibold flex items-center space-x-1">
+                          <span className="text-emerald-700 text-[11px] font-semibold flex items-center space-x-1">
                             <UserCheck className="w-3 h-3" />
                             <span>Attended</span>
                           </span>
@@ -273,28 +266,28 @@ export const Dashboard = () => {
                         <div className="flex items-center justify-end space-x-1">
                           <button
                             onClick={() => setWhyModalPatient(p)}
-                            className="p-1 rounded bg-slate-800 text-slate-300 hover:text-cyan-400"
-                            title="Explain AI decision"
+                            className="p-1 rounded border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-100"
+                            title="Why this decision?"
                           >
                             <Info className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => setTrendModalPatient(p)}
-                            className="p-1 rounded bg-slate-800 text-slate-300 hover:text-amber-400"
+                            className="p-1 rounded border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-100"
                             title="Vital trend trajectory"
                           >
                             <TrendingDown className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => handleSimulateDeterioration(p.id)}
-                            className="p-1 rounded bg-red-950 text-red-400 hover:bg-red-900"
+                            className="p-1 rounded border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100"
                             title="Simulate Deterioration"
                           >
                             <Zap className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => viewPatientDetail(p.id)}
-                            className="p-1 rounded bg-cyan-950 text-cyan-400 hover:bg-cyan-900"
+                            className="p-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100"
                             title="View detail"
                           >
                             <Eye className="w-3.5 h-3.5" />
@@ -309,10 +302,10 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        {/* Right Side Panel: Tasks to Do & Multi-Percentage Safety Scales */}
-        {showSidebar && (
-          <ActionSidebar
-            onSelectFilter={(station) => setStationFilter(station)}
+        {/* Right Zone: Persistent Safety Summary Panel */}
+        {showRightPanel && (
+          <SafetySummaryPanel
+            onSelectFilter={(stn) => setStationFilter(stn)}
             activeFilter={stationFilter}
           />
         )}

@@ -1,6 +1,14 @@
 import React from 'react';
 import { useTriage } from '../context/TriageContext';
-import { HelpCircle, AlertOctagon, Activity, Clock, ShieldCheck, X } from 'lucide-react';
+import {
+  Info,
+  ShieldCheck,
+  AlertTriangle,
+  HelpCircle,
+  Clock,
+  TrendingDown,
+  X
+} from 'lucide-react';
 
 export const WhyExplanationModal = () => {
   const { whyModalPatient, setWhyModalPatient } = useTriage();
@@ -12,161 +20,119 @@ export const WhyExplanationModal = () => {
   const isGeriatric = p.age >= 65;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
-        {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/50">
+    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+      <div className="bg-white border border-slate-200 rounded-2xl max-w-xl w-full p-6 shadow-xl space-y-4 max-h-[90vh] overflow-y-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div className="flex items-center space-x-2.5">
-            <div className="p-1.5 rounded-lg bg-cyan-950 text-cyan-400 border border-cyan-800">
-              <HelpCircle className="w-5 h-5" />
+            <div className="p-2 rounded-lg bg-cyan-50 text-cyan-800 border border-cyan-200">
+              <Info className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">
-                Explainable AI & Safety Rationale
-              </h3>
-              <p className="text-xs text-slate-400">
-                Patient: <strong className="text-slate-200">{p.id}</strong> ({p.name})
+              <h2 className="text-base font-bold text-slate-900">
+                Decision Explainability &amp; Rationale
+              </h2>
+              <p className="text-xs text-slate-500">
+                Patient: <strong className="text-slate-800">{p.id} — {p.name}</strong> ({p.age}y, {p.gender})
               </p>
             </div>
           </div>
+
           <button
             onClick={() => setWhyModalPatient(null)}
-            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Scrollable Content */}
-        <div className="p-6 space-y-5 overflow-y-auto">
-          {/* Top Recommendation Summary */}
-          <div className="p-4 rounded-xl bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 flex items-center justify-between">
-            <div>
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                Current Assigned Decision
-              </span>
-              <div className="text-lg font-black text-white mt-0.5">
-                Level {p.display_triage_level} — {p.triage_category}
-              </div>
-            </div>
-            <div className="text-right">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                Action Priority Score
-              </span>
-              <div className="text-xl font-black text-cyan-400">
-                {p.action_priority_score} pts
-              </div>
+        {/* 1. Core Summary Snapshot */}
+        <div className="grid grid-cols-3 gap-2 text-xs">
+          <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+            <span className="text-slate-500 block text-[10px] uppercase font-semibold">Triage Urgency</span>
+            <div className="text-sm font-bold text-slate-900 mt-0.5">
+              Level {p.display_triage_level} &bull; {p.triage_category}
             </div>
           </div>
 
-          {/* 1. Age-Aware Threshold Calibration */}
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-bold text-slate-200">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>1. Age-Stratified Physiological Baseline</span>
-            </div>
-            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-300">
-              <p>
-                <strong className="text-white">Active Demographic Profile: </strong>
-                {isPediatric && '👶 Pediatric Profile (Age < 16) — Heightened sensitivity for respiratory rate (>30) and high fever in toddlers.'}
-                {isGeriatric && '👴 Geriatric Profile (Age ≥ 65) — Calibrated for blunted fever responses, occult hypothermic sepsis, and atypical cardiac presentations.'}
-                {!isPediatric && !isGeriatric && '🧑 Adult Profile (Age 16-64) — Standard physiological shock indices applied.'}
-              </p>
+          <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+            <span className="text-slate-500 block text-[10px] uppercase font-semibold">Action Score</span>
+            <div className="text-sm font-bold text-cyan-800 mt-0.5">
+              {p.action_priority_score} pts
             </div>
           </div>
 
-          {/* 2. Uncertainty-as-Risk Engine ("Unknown != Safe") */}
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-bold text-slate-200">
-              <AlertOctagon className="w-4 h-4 text-purple-400" />
-              <span>2. Uncertainty & Data Quality Penalties ("Unknown ≠ Safe")</span>
-            </div>
-            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs space-y-2">
-              <div className="flex justify-between items-center text-slate-300">
-                <span>Data Completeness & Confidence:</span>
-                <strong className={p.current_confidence < 60 ? 'text-amber-400' : 'text-emerald-400'}>
-                  {p.current_confidence}% (Uncertainty: {p.uncertainty_score}%)
-                </strong>
-              </div>
-              {p.is_uncertain ? (
-                <div className="p-2 rounded-lg bg-purple-950/40 border border-purple-800/60 text-purple-200 text-[11px]">
-                  ⚠️ <strong>Asymmetric Safety Rule Triggered:</strong> Critical vital signs or historical records are missing. The system intentionally blocks safe/low-priority assumptions and enforces clinical verification.
-                </div>
-              ) : (
-                <p className="text-slate-400 text-[11px]">
-                  ✓ Objective vital signs and prior medical records provide high baseline confidence.
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* 3. Dynamic Confidence Decay & Observation Staleness */}
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-bold text-slate-200">
-              <Clock className="w-4 h-4 text-amber-400" />
-              <span>3. Dynamic Confidence Decay & Safety Expiry (⏳)</span>
-            </div>
-            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs space-y-1.5 text-slate-300">
-              <div className="flex justify-between">
-                <span>Total Waiting Time:</span>
-                <strong className="text-white">{p.total_waiting_mins} minutes</strong>
-              </div>
-              <div className="flex justify-between">
-                <span>Time Since Last Vital Sign Recorded:</span>
-                <strong className={p.elapsed_since_vital > 25 ? 'text-amber-400' : 'text-white'}>
-                  {p.elapsed_since_vital} minutes ago
-                </strong>
-              </div>
-              <div className="flex justify-between">
-                <span>Safety Expiry Status:</span>
-                <strong className={p.safety_status === 'EXPIRED' ? 'text-red-400' : 'text-emerald-400'}>
-                  {p.safety_status}
-                </strong>
-              </div>
-              <p className="text-[11px] text-slate-400 pt-1 border-t border-slate-800/80">
-                Core principle: <em>"Safety must be continuously re-earned through observation."</em> Initial confidence decays over time without repeat assessment.
-              </p>
-            </div>
-          </div>
-
-          {/* 4. Attention Gap Score Formula */}
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-bold text-slate-200">
-              <Activity className="w-4 h-4 text-cyan-400" />
-              <span>4. Attention Gap Score Computation</span>
-            </div>
-            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs space-y-1 text-slate-300 font-mono text-[11px]">
-              <div className="flex justify-between text-slate-400">
-                <span>+ Clinical Baseline Risk ({p.risk_score}%):</span>
-                <span>+{(p.risk_score * 0.4).toFixed(1)} pts</span>
-              </div>
-              <div className="flex justify-between text-slate-400">
-                <span>+ Vital Deterioration Score:</span>
-                <span>+{(p.deterioration_score * 1.2).toFixed(1)} pts</span>
-              </div>
-              <div className="flex justify-between text-slate-400">
-                <span>+ Observation Staleness Score:</span>
-                <span>+{(p.staleness_score * 1.1).toFixed(1)} pts</span>
-              </div>
-              <div className="flex justify-between text-slate-400">
-                <span>- Clinical Coverage Discount (Doctor Present):</span>
-                <span className={p.is_attended ? 'text-emerald-400' : 'text-slate-500'}>
-                  {p.is_attended ? '-45.0 pts (Covered)' : '0.0 pts (Unattended Waiting)'}
-                </span>
-              </div>
-              <div className="flex justify-between font-bold text-cyan-300 pt-1 border-t border-slate-800">
-                <span>= Composite Action Rank Score:</span>
-                <span>{p.action_priority_score} pts</span>
-              </div>
+          <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+            <span className="text-slate-500 block text-[10px] uppercase font-semibold">Confidence</span>
+            <div className={`text-sm font-bold mt-0.5 ${p.current_confidence < 60 ? 'text-purple-700' : 'text-emerald-700'}`}>
+              {p.current_confidence}%
             </div>
           </div>
         </div>
 
-        {/* Modal Footer */}
-        <div className="p-4 border-t border-slate-800 bg-slate-950/50 flex justify-end">
+        {/* 2. Primary Rationale */}
+        <div className="p-3.5 rounded-lg bg-cyan-50/60 border border-cyan-200 text-xs space-y-1">
+          <span className="font-bold text-cyan-900 flex items-center space-x-1.5">
+            <ShieldCheck className="w-4 h-4 text-cyan-700" />
+            <span>Primary Safety Rationale for Current Rank:</span>
+          </span>
+          <p className="text-slate-800 font-medium leading-relaxed pl-5">
+            {p.primary_action_reason || p.primary_rationale}
+          </p>
+        </div>
+
+        {/* 3. Clinical Factors Contributing */}
+        <div className="space-y-2 text-xs">
+          <span className="font-bold text-slate-900 uppercase tracking-wider text-[11px] block">
+            Contributing Physiological &amp; Operational Factors:
+          </span>
+
+          <div className="space-y-1.5">
+            {(p.contributing_factors || []).map((factor, i) => (
+              <div
+                key={i}
+                className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-700 flex items-center space-x-2"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-600 shrink-0" />
+                <span className="leading-snug">{factor}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 4. Age-Specific Rule Applied */}
+        <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs space-y-1">
+          <span className="font-bold text-slate-900 block">
+            {isPediatric ? '👶 Pediatric Physiological Model (<16y)' : isGeriatric ? '👴 Geriatric Vulnerability Model (≥65y)' : '🧑 Adult Standard Emergency Model'}
+          </span>
+          <p className="text-slate-600 text-[11px]">
+            {isPediatric
+              ? 'Calibrated with age-specific vital ranges for infants and toddlers. Heightened sensitivity to fever, stridor, and respiratory distress.'
+              : isGeriatric
+              ? 'Calibrated for blunted febrile responses (hypothermia alerts for occult sepsis) and higher susceptibility to occult shock with low systolic BP.'
+              : 'Evaluated against standard clinical shock parameters and presenting symptom acuity.'}
+          </p>
+        </div>
+
+        {/* 5. Uncertainty Breakdown if applicable */}
+        {p.is_uncertain && (
+          <div className="p-3 rounded-lg bg-purple-50 border border-purple-200 text-xs text-purple-900 space-y-1">
+            <span className="font-bold flex items-center space-x-1.5">
+              <HelpCircle className="w-4 h-4 text-purple-600" />
+              <span>Uncertainty Penalty Applied ("Unknown ≠ Safe")</span>
+            </span>
+            <ul className="text-[11px] text-purple-900 list-disc list-inside space-y-0.5">
+              {(p.uncertainty_reasons || []).map((r, idx) => (
+                <li key={idx}>{r}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="pt-3 border-t border-slate-100 flex justify-end">
           <button
             onClick={() => setWhyModalPatient(null)}
-            className="px-5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-200 hover:bg-slate-700 transition-colors"
+            className="px-4 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition-colors"
           >
             Close Rationale
           </button>
