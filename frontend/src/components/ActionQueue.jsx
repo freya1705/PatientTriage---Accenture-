@@ -1,14 +1,10 @@
 import React from 'react';
 import { useTriage } from '../context/TriageContext';
 import {
-  AlertCircle,
-  Clock,
-  HelpCircle,
-  CheckCircle2,
+  Zap,
   TrendingDown,
   UserCheck,
   UserX,
-  Zap,
   Info,
   ChevronRight,
   ShieldAlert
@@ -80,7 +76,7 @@ export const ActionQueue = () => {
             </span>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            Ranked by <strong className="text-slate-300">Need vs. Clinical Attention Gap</strong> — surfaces unattended deteriorating & safety-expired patients before covered cases.
+            Ranked by <strong className="text-slate-300">Need vs. Clinical Attention Gap</strong> — surfaces unattended deteriorating &amp; safety-expired patients before covered cases.
           </p>
         </div>
 
@@ -98,6 +94,7 @@ export const ActionQueue = () => {
           const triageBadge = getTriageLevelBadge(patient.display_triage_level);
           const isPediatric = patient.age < 16;
           const isGeriatric = patient.age >= 65;
+          const failureCat = patient.failure_mode_category;
 
           return (
             <div
@@ -137,6 +134,16 @@ export const ActionQueue = () => {
                       <span className="text-xs text-slate-400">
                         {patient.name}
                       </span>
+
+                      {/* Failure Mode Badge */}
+                      {failureCat && (
+                        <span
+                          className={`px-2 py-0.5 rounded text-[10px] font-bold border ${failureCat.color}`}
+                          title={failureCat.name}
+                        >
+                          {failureCat.badge}
+                        </span>
+                      )}
 
                       {/* Demographic Pill */}
                       {isPediatric && (

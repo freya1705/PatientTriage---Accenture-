@@ -12,7 +12,8 @@ import {
   UserCheck,
   UserX,
   Zap,
-  Activity
+  Activity,
+  Layers
 } from 'lucide-react';
 
 export const Dashboard = () => {
@@ -30,7 +31,7 @@ export const Dashboard = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [levelFilter, setLevelFilter] = useState('ALL');
-  const [safetyFilter, setSafetyFilter] = useState('ALL');
+  const [failureCatFilter, setFailureCatFilter] = useState('ALL');
 
   if (loading && !queueData) {
     return (
@@ -45,6 +46,15 @@ export const Dashboard = () => {
 
   const allPatients = queueData?.all_patients || [];
 
+  const failureCategories = [
+    { id: 'ALL', label: 'All Cases' },
+    { id: 'CAT_A', label: 'Cat A: Resuscitation Overrides' },
+    { id: 'CAT_B', label: 'Cat B: Hidden / Age Danger' },
+    { id: 'CAT_C', label: 'Cat C: Unknown ≠ Safe' },
+    { id: 'CAT_D', label: 'Cat D: Deteriorating' },
+    { id: 'CAT_E', label: 'Cat E: Attention Gap' }
+  ];
+
   const filteredPatients = allPatients.filter((p) => {
     const matchesSearch =
       p.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -54,13 +64,10 @@ export const Dashboard = () => {
     const matchesLevel =
       levelFilter === 'ALL' || p.display_triage_level.toString() === levelFilter;
 
-    const matchesSafety =
-      safetyFilter === 'ALL' ||
-      (safetyFilter === 'EXPIRED' && p.safety_status === 'EXPIRED') ||
-      (safetyFilter === 'UNCERTAIN' && p.is_uncertain) ||
-      (safetyFilter === 'DETERIORATING' && p.trajectory_status !== 'STABLE');
+    const matchesCategory =
+      failureCatFilter === 'ALL' || p.failure_mode_category?.code === failureCatFilter;
 
-    return matchesSearch && matchesLevel && matchesSafety;
+    return matchesSearch && matchesLevel && matchesCategory;
   });
 
   return (
@@ -72,14 +79,14 @@ export const Dashboard = () => {
       <ActionQueue />
 
       {/* Complete Patient Census Section */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
           <div>
             <h2 className="text-base font-extrabold text-white tracking-tight">
               All Monitored Emergency Patients ({allPatients.length})
             </h2>
             <p className="text-xs text-slate-400">
-              Complete surveillance census across active waiting rooms and treatment areas.
+              Complete surveillance census categorized across the 5 failure modes of traditional triage.
             </p>
           </div>
 
@@ -93,7 +100,7 @@ export const Dashboard = () => {
                 placeholder="Search patient, ID, complaint..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-slate-950 border border-slate-700 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 w-48 sm:w-60"
+                className="bg-slate-950 border border-slate-700 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 w-48 sm:w-56"
               />
             </div>
 
@@ -111,18 +118,6 @@ export const Dashboard = () => {
               <option value="5">Level 5 (Non-Urgent)</option>
             </select>
 
-            {/* Safety Filter */}
-            <select
-              value={safetyFilter}
-              onChange={(e) => setSafetyFilter(e.target.value)}
-              className="bg-slate-950 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-cyan-500"
-            >
-              <option value="ALL">All Safety States</option>
-              <option value="EXPIRED">🔴 Safety Expired</option>
-              <option value="UNCERTAIN">⚠️ Uncertain / Missing</option>
-              <option value="DETERIORATING">📉 Deteriorating</option>
-            </select>
-
             {/* Refresh Button */}
             <button
               onClick={fetchQueue}
@@ -134,18 +129,38 @@ export const Dashboard = () => {
           </div>
         </div>
 
+        {/* 5 Failure Mode Quick Filter Tabs */}
+        <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-xs">
+          <span className="text-slate-400 font-bold text-[11px] shrink-0 mr-1 flex items-center space-x-1">
+            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Failure Mode Filter:</span>
+          </span>
+          {failureCategories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setFailureCatFilter(cat.id)}
+              className={`px-2.5 py-1 rounded-lg font-semibold text-[11px] shrink-0 transition-all ${
+                failureCatFilter === cat.id
+                  ? 'bg-cyan-600 text-white shadow-sm'
+                  : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
         {/* Patient Table */}
-        <div className="overflow-x-auto mt-3">
+        <div className="overflow-x-auto mt-2">
           <table className="w-full text-left text-xs text-slate-300">
             <thead className="bg-slate-950/60 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800">
               <tr>
                 <th className="py-3 px-3">Patient</th>
-                <th className="py-3 px-2">Demographic</th>
+                <th className="py-3 px-2">Failure Mode Category</th>
                 <th className="py-3 px-2">Triage Level</th>
                 <th className="py-3 px-3">Chief Complaint</th>
                 <th className="py-3 px-2">Latest SpO₂</th>
                 <th className="py-3 px-2">Safety State</th>
-                <th className="py-3 px-2">Confidence</th>
                 <th className="py-3 px-2">Coverage</th>
                 <th className="py-3 px-3 text-right">Actions</th>
               </tr>
@@ -159,13 +174,13 @@ export const Dashboard = () => {
                   </td>
 
                   <td className="py-3 px-2 whitespace-nowrap">
-                    {p.age < 16 ? (
-                      <span className="text-pink-300 font-semibold">👶 {p.age}y Ped</span>
-                    ) : p.age >= 65 ? (
-                      <span className="text-amber-300 font-semibold">👴 {p.age}y Ger</span>
-                    ) : (
-                      <span className="text-slate-400 font-medium">🧑 {p.age}y Adult</span>
-                    )}
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                        p.failure_mode_category?.color || 'bg-slate-800 text-slate-300 border-slate-700'
+                      }`}
+                    >
+                      {p.failure_mode_category?.badge || 'Standard'}
+                    </span>
                   </td>
 
                   <td className="py-3 px-2 whitespace-nowrap">
@@ -210,10 +225,6 @@ export const Dashboard = () => {
                     >
                       {p.safety_status}
                     </span>
-                  </td>
-
-                  <td className="py-3 px-2 whitespace-nowrap font-medium text-slate-300">
-                    {p.current_confidence}% {p.is_uncertain && '⚠️'}
                   </td>
 
                   <td className="py-3 px-2 whitespace-nowrap">

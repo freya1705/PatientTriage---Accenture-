@@ -9,6 +9,16 @@ export const api = {
     return res.data;
   },
 
+  getEvaluationMetrics: async () => {
+    const res = await axios.get(`${API_BASE}/queue/evaluation`);
+    return res.data;
+  },
+
+  updateHospitalProfile: async (profileType) => {
+    const res = await axios.post(`${API_BASE}/queue/profile`, { profile_type: profileType });
+    return res.data;
+  },
+
   // Patients
   getPatients: async () => {
     const res = await axios.get(`${API_BASE}/patients`);

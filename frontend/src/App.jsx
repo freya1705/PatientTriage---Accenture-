@@ -3,6 +3,8 @@ import { TriageProvider, useTriage } from './context/TriageContext';
 import { Navbar } from './components/Navbar';
 import { Dashboard } from './pages/Dashboard';
 import { IntakePage } from './pages/IntakePage';
+import { AboutScoringPage } from './pages/AboutScoringPage';
+import { EvaluationPage } from './pages/EvaluationPage';
 import { PatientDetailPage } from './pages/PatientDetailPage';
 import { AuditPage } from './pages/AuditPage';
 import { PrivacyPage } from './pages/PrivacyPage';
@@ -38,6 +40,8 @@ const AppContent = () => {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         {activeTab === 'dashboard' && <Dashboard />}
         {activeTab === 'intake' && <IntakePage />}
+        {activeTab === 'about-scoring' && <AboutScoringPage />}
+        {activeTab === 'evaluation' && <EvaluationPage />}
         {activeTab === 'patient-detail' && <PatientDetailPage />}
         {activeTab === 'audit' && <AuditPage />}
         {activeTab === 'privacy' && <PrivacyPage />}
@@ -51,7 +55,7 @@ const AppContent = () => {
       {/* Clean Modern Footer */}
       <footer className="border-t border-slate-900 bg-slate-950 py-4 text-center text-xs text-slate-500">
         <p>
-          PatientTriage.ai &bull; Accenture Innovation Challenge 2026 Prototype &bull; Clinical Decision-Support & Continuous Safety Intelligence
+          PatientTriage.ai &bull; Accenture Innovation Challenge 2026 Prototype &bull; Clinical Decision-Support &amp; Continuous Safety Intelligence
         </p>
       </footer>
     </div>
