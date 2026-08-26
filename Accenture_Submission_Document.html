@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PatientTriage.ai — Accenture Innovation Challenge 2026 Submission README</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 18mm 16mm 20mm 16mm;
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0f172a;
+      background-color: #ffffff;
+      line-height: 1.5;
+      font-size: 9.5pt;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #0f172a;
+      font-size: 20pt;
+      font-weight: 800;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.5px;
+    }
+    .tagline {
+      color: #0369a1;
+      font-size: 11pt;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+    }
+    .subtag {
+      color: #64748b;
+      font-size: 9pt;
+      font-weight: 500;
+      margin: 0 0 16px 0;
+    }
+    .header-banner {
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+      font-size: 8pt;
+    }
+    .meta-item strong {
+      color: #334155;
+      display: block;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+    }
+    h2 {
+      color: #0f172a;
+      font-size: 12.5pt;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin: 18px 0 8px 0;
+      page-break-after: avoid;
+    }
+    h3 {
+      color: #0369a1;
+      font-size: 10.5pt;
+      font-weight: 700;
+      margin: 12px 0 4px 0;
+      page-break-after: avoid;
+    }
+    p {
+      margin: 0 0 8px 0;
+      text-align: justify;
+    }
+    ul, ol {
+      margin: 0 0 10px 0;
+      padding-left: 18px;
+    }
+    li {
+      margin-bottom: 3px;
+    }
+    .toc {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+      font-size: 8.5pt;
+    }
+    .toc-grid a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .callout {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin: 10px 0;
+      font-size: 9pt;
+    }
+    .callout-alert {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin: 10px 0;
+      font-size: 8.5pt;
+    }
+    .formula-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 8.5pt;
+      color: #0f172a;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px 0;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 5px 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    .badge-pass {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 700;
+      background-color: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+    .badge-alert {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 700;
+      background-color: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+    code {
+      font-family: "Courier New", Courier, monospace;
+      background: #f1f5f9;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 8.5pt;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 7.5pt;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Banner -->
+  <div class="header-banner">
+    <h1>PatientTriage.ai</h1>
+    <div class="tagline">“Triage is a snapshot. Risk isn't.”</div>
+    <div class="subtag">A Continuous Safety Decision-Support Layer for Emergency Waiting Rooms &bull; Accenture Innovation Challenge 2026</div>
+    
+    <div class="meta-grid">
+      <div class="meta-item"><strong>Competition Track</strong>Round 2 Technical Prototype</div>
+      <div class="meta-item"><strong>Core Technology</strong>Python 3.13 / FastAPI / React 19</div>
+      <div class="meta-item"><strong>Deployment Model</strong>Edge / On-Premise Air-Gapped</div>
+      <div class="meta-item"><strong>Repository</strong>github.com/freya1705/PatientTriage---Accenture-</div>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="toc">
+    <strong style="font-size: 9pt; color: #1e293b; display: block; margin-bottom: 6px;">Table of Contents</strong>
+    <div class="toc-grid">
+      <div>1. Project Overview &amp; Introduction</div>
+      <div>8. Requirements &amp; Prerequisites</div>
+      <div>2. The Core Problem: 3 Failure Modes</div>
+      <div>9. Installation &amp; Quick Start Guide</div>
+      <div>3. Solution Approach &amp; Innovation</div>
+      <div>10. Configuration &amp; Hospital Profiles</div>
+      <div>4. System Architecture (3-Tier Design)</div>
+      <div>11. Benchmark Cohort &amp; Impact Evaluation</div>
+      <div>5. Core Intelligence &amp; Mathematical Formulation</div>
+      <div>12. Security, Privacy-by-Design &amp; Governance</div>
+      <div>6. Implementation Details &amp; Tech Stack</div>
+      <div>13. Troubleshooting &amp; Frequently Asked Questions</div>
+      <div>7. Key Features &amp; Clinical Workflow</div>
+      <div>14. Maintainers &amp; Regulatory Disclaimer</div>
+    </div>
+  </div>
+
+  <!-- 1. Overview -->
+  <h2>1. Project Overview &amp; Introduction</h2>
+  <p>
+    <strong>PatientTriage.ai</strong> is an emergency department clinical decision-support system and continuous physiological safety surveillance layer. While traditional emergency triage treats patient prioritization as a static, point-in-time snapshot at the hospital front door, PatientTriage.ai continuously monitors patient waiting times, vital sign trajectory velocity (&Delta;SpO₂, &Delta;HR), missing information uncertainty, and clinical coverage to answer:
+  </p>
+  <div class="callout">
+    <strong>Core Clinical Question:</strong> <em>“Who in the waiting room is no longer safe to keep waiting?”</em>
+  </div>
+
+  <!-- 2. Problem Statement -->
+  <h2>2. The Core Problem: 3 Failure Modes of Traditional Triage</h2>
+  <p>
+    Emergency departments worldwide utilize 5-level triage systems (ESI, Manchester, CTAS) to sort patients on arrival. Once triaged, patients routinely wait 2 to 6 hours before physician evaluation. Traditional static triage fails in three concrete ways:
+  </p>
+  <ul>
+    <li><strong>1. Silent Post-Triage Waiting Room Deterioration:</strong> A patient triaged as Level 3 (Urgent) or Level 4 (Less Urgent) may develop acute hypoxemia or occult shock while waiting. Static systems have no automated mechanism to detect or elevate deteriorating patients without manual nurse re-checks.</li>
+    <li><strong>2. Missing Vitals &amp; Stale Data Assumed Safe:</strong> When triage data is missing (e.g. absent pulse oximetry or blood pressure), standard systems default to low-acuity bands, creating false reassurance. Under the clinical reality of <em>“Unknown is NOT Safe”</em>, missing data should heighten vigilance.</li>
+    <li><strong>3. The Clinical Attention Bottleneck:</strong> Static lists rank patients purely by initial acuity. Consequently, critical patients who are <em>already attended</em> by emergency physicians occupy the top slots, while <em>unattended deteriorating patients</em> remain buried.</li>
+  </ul>
+
+  <!-- 3. Solution Approach -->
+  <h2>3. Solution Approach &amp; Innovation</h2>
+  <p>
+    PatientTriage.ai transforms triage into an automated continuous safety surveillance loop:
+  </p>
+  <ol>
+    <li><strong>Rapid Ingestion:</strong> Ingests initial vitals, chief complaints, and comorbidity history with age-specific threshold calibration.</li>
+    <li><strong>Dynamic Staleness Tracking:</strong> Observations decay in confidence as time passes (&tau;<sub>staleness</sub>), flipping to <code>SAFETY_EXPIRED</code> when safety windows expire.</li>
+    <li><strong>Delta Deterioration Surveillance:</strong> Continuous velocity modeling flags sudden drops in SpO₂ (&le; -5%) or spikes in heart rate.</li>
+    <li><strong>Attention Gap Live Action Queue:</strong> Ranks patients by <em>Need vs. Clinical Coverage</em>, elevating unattended deteriorating cases to Rank #1 with a single next-best-action button.</li>
+    <li><strong>Clinician Governance &amp; Traceability:</strong> Human-in-the-loop override guardrails with mandatory rationale logging to an append-only audit ledger.</li>
+  </ol>
+
+  <!-- 4. Architecture -->
+  <div class="page-break"></div>
+  <h2>4. System Architecture &amp; 3-Tier Layered Design</h2>
+  <p>
+    To ensure patient safety and transparent clinical AI governance, PatientTriage.ai enforces a strict 3-tier separation:
+  </p>
+  
+  <table style="font-size: 8.5pt;">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Layer</th>
+        <th style="width: 40%;">Core Responsibilities</th>
+        <th style="width: 35%;">Key Implementation Modules</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Tier 1: Deterministic Safety Layer</strong></td>
+        <td>Hard clinical red-flags (SpO₂ &lt; 85%, SBP &lt; 75 mmHg, FAST Stroke, pediatric stridor) that immediately bypass statistical scoring. Counterfactual downgrade safety blocking.</td>
+        <td><code>safety_guardrails.py</code><br><code>downgrade_guard.py</code></td>
+      </tr>
+      <tr>
+        <td><strong>Tier 2: AI &amp; Decision-Support Layer</strong></td>
+        <td>Continuous vital velocity tracking (&Delta;SpO₂, &Delta;HR), dynamic confidence decay (&tau;<sub>staleness</sub>), uncertainty scoring (Unknown &ne; Safe), Attention Gap re-ranking, and natural-language explainability.</td>
+        <td><code>risk_engine.py</code><br><code>deterioration_engine.py</code><br><code>safety_expiry_engine.py</code><br><code>attention_gap_engine.py</code></td>
+      </tr>
+      <tr>
+        <td><strong>Tier 3: Clinician Governance Layer</strong></td>
+        <td>Licensed clinician override authority, mandatory justification recording, and immutable append-only audit logging for clinical traceability.</td>
+        <td><code>audit_service.py</code><br><code>OverrideModal.jsx</code><br><code>AuditPage.jsx</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 5. Intelligence Engines -->
+  <h2>5. Core Intelligence Engines &amp; Mathematical Formulations</h2>
+
+  <h3>5.1 Age-Aware Threshold Calibrations</h3>
+  <p>
+    Physiological normal ranges are stratified across three distinct demographic models:
+  </p>
+  <ul>
+    <li><strong>Pediatric (&lt;16y):</strong> Infant extreme tachycardia (&gt;160 bpm), toddler high fever (&ge;38.5&deg;C in &lt;3yo alerting for rapid decompensation), and age-adjusted minimum systolic blood pressure: <code>SBP_min = 70 + (2 &times; Age)</code>.</li>
+    <li><strong>Adult (16–64y):</strong> Standard clinical shock parameters (SBP &lt; 90, SpO₂ &lt; 92%, RR &gt; 30).</li>
+    <li><strong>Geriatric (&ge;65y):</strong> Blunted autonomic response handling: hypothermia (&lt;36.0&deg;C) alerts for occult sepsis, and shock threshold is adjusted upward (SBP &lt; 100 mmHg).</li>
+  </ul>
+
+  <h3>5.2 Uncertainty-as-Risk Engine (“Unknown &ne; Safe”)</h3>
+  <p>
+    Missing physiological signals actively penalize confidence rather than assuming safety:
+  </p>
+  <div class="formula-box">
+    Uncertainty = &Sigma; (Missing SpO₂: +22%, Missing SBP: +20%, Missing HR: +15%, Zero History: +18%, Discordance: +14%)<br>
+    Confidence(t) = max(15.0, 100.0 - Uncertainty)
+  </div>
+  <p>
+    <em>Asymmetric Safety Bias:</em> If a patient with missing vitals would otherwise fall into Level 4 or 5, the engine escalates them to Level 3 Urgent and mandates an <code>[ ACQUIRE VITALS ]</code> action.
+  </p>
+
+  <h3>5.3 Dynamic Confidence Decay &amp; Safety Expiry (&tau;<sub>staleness</sub>)</h3>
+  <p>
+    Evidence half-life degrades continuously as time passes without fresh observations:
+  </p>
+  <div class="formula-box">
+    Confidence(t) = Base_Confidence &times; max(0.20, 1.0 - [ (t - t_last) / (Window &times; 1.5) ] &times; 0.65)
+  </div>
+  <p>
+    Reassessment windows: Level 1 = 5m, Level 2 = 15m, Level 3 = 30m, Level 4 = 60m, Level 5 = 120m. Exceeding the window flips status to <code>EXPIRED</code> (+20 to +35 staleness score).
+  </p>
+
+  <h3>5.4 The Attention Gap Priority Equation</h3>
+  <div class="formula-box">
+    Action Priority Score = (w_r &times; Risk + Urgency) + (w_d &times; Deterioration) + (w_s &times; Staleness) + Wait Hazard + (w_u &times; Uncertainty) - (w_c &times; Clinical Coverage)
+  </div>
+  <p>
+    Where <code>w_c</code> deducts priority when an attending physician is actively managing the patient (<code>is_attended = True</code>), allowing unattended deteriorating waiting patients to surface to Rank #1.
+  </p>
+
+  <!-- 6. Implementation & Features -->
+  <div class="page-break"></div>
+  <h2>6. Implementation Details &amp; Tech Stack</h2>
+  <ul>
+    <li><strong>Backend:</strong> Python 3.13.2, FastAPI 0.115+, Pydantic v2 validation, SQLite with Write-Ahead Logging (WAL) and busy timeout resilience.</li>
+    <li><strong>Frontend:</strong> React 19, Vite, Tailwind CSS v4, Lucide React icons, Recharts for responsive vital trend sparklines.</li>
+    <li><strong>Design System:</strong> Calm clinical light palette (off-white <code>#f8fafc</code>, dark charcoal <code>#0f172a</code>) with high readability and zero eye strain.</li>
+  </ul>
+
+  <h2>7. Key Features &amp; Clinical Workflow</h2>
+  <ul>
+    <li><strong>3-Zone Clinical Command Center:</strong> Left navigation rail, Center Live Action Queue workspace, and Right persistent safety summary panel.</li>
+    <li><strong>Hero Live Action Queue:</strong> Real-time rank ordering with SpO₂ sparklines, Attention Gap meters, and one Next-Best-Action button.</li>
+    <li><strong>7 One-Click Demo Presets:</strong> Toddler fever, geriatric sepsis, missing vitals, ambiguous diabetic nausea, zero-history trauma, and silent hemorrhage.</li>
+    <li><strong>Bedside Vital Logger:</strong> Add repeat vitals directly in the patient dossier to refresh safety validity.</li>
+    <li><strong>Interactive Deterioration Simulator:</strong> Injects an SpO₂ drop (96% &rarr; 89%) to demonstrate instant real-time queue elevation.</li>
+    <li><strong>🚨 3&times; Surge Mode Disaster Simulator:</strong> Expands census from 20 to 60 patients with automatic queue compression.</li>
+    <li><strong>Hospital Profile Switcher:</strong> Toggle live between Level-1 Trauma Center and Community/Rural Clinic.</li>
+  </ul>
+
+  <!-- 8. Benchmark Evaluation -->
+  <h2>8. Benchmark Cohort &amp; Empirical Impact Evaluation</h2>
+  <p>
+    Evaluated across 20 synthetic clinical scenarios representing 5 systematic failure modes:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Performance Dimension</th>
+        <th>Traditional Static Triage</th>
+        <th>PatientTriage.ai</th>
+        <th>Measured Impact Delta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Waiting Deterioration Catch Rate</strong></td>
+        <td><span class="badge-alert">0%</span> (Undetected until complaint)</td>
+        <td><span class="badge-pass">100%</span> (Continuous delta surveillance)</td>
+        <td><strong>+100% Safety Catch</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Stale Observation Flagging</strong></td>
+        <td><span class="badge-alert">0%</span> (Assumed permanently safe)</td>
+        <td><span class="badge-pass">100%</span> (Flipped to <code>SAFETY_EXPIRED</code>)</td>
+        <td><strong>Zero unmonitored stale waits</strong></td>
+      </tr>
+      <tr>
+        <td><strong>False Reassurance on Missing Vitals</strong></td>
+        <td><span class="badge-alert">High</span> (Missing vitals treated as normal)</td>
+        <td><span class="badge-pass">0%</span> (Unknown &ne; Safe verification)</td>
+        <td><strong>Eliminates under-triage</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Attention Gap Optimization</strong></td>
+        <td><span class="badge-alert">None</span> (Attended cases block queue)</td>
+        <td><span class="badge-pass">Active</span> (Unattended deteriorating elevated)</td>
+        <td><strong>Optimized clinician capacity</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Unsafe Downgrades Blocked</strong></td>
+        <td><span class="badge-alert">0 Guardrails</span></td>
+        <td><span class="badge-pass">100% Guarded</span> (Proof required)</td>
+        <td><strong>100% Downgrade Guarded</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: 8pt; color: #64748b;">
+    *Results reflect simulated evaluations across 20 synthetic clinical benchmark scenarios for prototype demonstration.
+  </p>
+
+  <!-- 9. Quickstart & Installation -->
+  <h2>9. Installation &amp; Quick Start Guide</h2>
+  <pre># 1. One-Command Launch (Windows PowerShell)
+.\start.ps1
+
+# 2. Manual Startup
+# Backend (FastAPI):
+pip install -r requirements.txt
+python -m uvicorn backend.main:app --reload --port 8000
+
+# Frontend (React + Vite):
+cd frontend && npm install && npm run dev
+
+# 3. Run Test Suite (33 Automated Tests)
+python -m pytest -v</pre>
+
+  <!-- 10. Security & Privacy -->
+  <h2>10. Security, Privacy-by-Design &amp; Governance</h2>
+  <ul>
+    <li><strong>Zero PHI:</strong> 100% synthetic physiological datasets; no real patient records.</li>
+    <li><strong>Air-Gapped Operation:</strong> Runs entirely on local edge hardware with zero external cloud LLM dependencies.</li>
+    <li><strong>Append-Only Audit Ledger:</strong> Every intake, vital update, deterioration event, and clinician override is recorded with timestamps and clinical roles.</li>
+  </ul>
+
+  <!-- 11. Troubleshooting & FAQ -->
+  <h2>11. Troubleshooting &amp; Frequently Asked Questions (FAQ)</h2>
+  <p><strong>Q: Does PatientTriage.ai replace the emergency triage nurse?</strong><br>
+  <em>A: No. It is an assistive continuous safety decision-support layer that augments clinicians by monitoring physiological trajectories and data staleness while patients wait.</em></p>
+  <p><strong>Q: How does the system handle patients with zero medical history?</strong><br>
+  <em>A: Under the “Unknown is NOT Safe” engine, zero medical history incurs an uncertainty penalty, preventing false low-urgency classification and flagging the patient for early physician intake verification.</em></p>
+
+  <!-- 12. Regulatory Disclaimer -->
+  <div class="callout-alert">
+    <strong>Regulatory &amp; Safety Notice:</strong> PatientTriage.ai is a clinical decision-support research prototype developed for the Accenture Innovation Challenge 2026. All patient cohorts are synthetically generated. This system is not a certified medical device and does not replace licensed clinical judgment.
+  </div>
+
+  <div style="margin-top: 14px; padding-top: 8px; border-top: 1px solid #e2e8f0; font-size: 8pt; color: #64748b; text-align: center;">
+    PatientTriage.ai &bull; Accenture Innovation Challenge 2026 &bull; GitHub: https://github.com/freya1705/PatientTriage---Accenture-
+  </div>
+
+</body>
+</html>
