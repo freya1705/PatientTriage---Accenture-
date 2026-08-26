@@ -2,7 +2,7 @@
 
 Write-Host "============================================================" -ForegroundColor Cyan
 Write-Host "  PatientTriage.ai - Full Stack Emergency Command Center" -ForegroundColor Green
-Write-Host "  Decide First. Watch Continuously. Act in Time." -ForegroundColor Yellow
+Write-Host "  Triage is a snapshot. Risk isn't." -ForegroundColor Yellow
 Write-Host "============================================================" -ForegroundColor Cyan
 
 # Start Backend

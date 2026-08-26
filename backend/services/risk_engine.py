@@ -36,7 +36,9 @@ MODERATE_RISK_COMPLAINTS = {
     "fever": 12.0,
     "dizziness": 12.0,
     "mild shortness of breath": 15.0,
-    "asthma": 14.0,
+    "asthma": 16.0,
+    "wheezing": 16.0,
+    "wheeze": 16.0,
     "palpitations": 14.0,
     "burn": 15.0
 }
@@ -174,13 +176,13 @@ def calculate_triage_assessment(
         reasons = red_flag_reasons + reasons
         calculated_risk = max(calculated_risk, 85.0 if triage_level == 1 else 70.0)
     else:
-        if calculated_risk >= 80.0:
+        if calculated_risk >= 75.0:
             triage_level = 1
-        elif calculated_risk >= 60.0:
+        elif calculated_risk >= 50.0:
             triage_level = 2
-        elif calculated_risk >= 40.0:
+        elif calculated_risk >= 28.0:
             triage_level = 3
-        elif calculated_risk >= 22.0:
+        elif calculated_risk >= 14.0:
             triage_level = 4
         else:
             triage_level = 5
@@ -200,29 +202,34 @@ def calculate_triage_assessment(
         5: "Level 5 — Non-Urgent"
     }
 
-    # Step 9: Action Determination
+    # Generate next best recommended action
     if triage_level == 1:
-        recommended_action = "EMERGENT RESUSCITATION: Immediate direct clinician and trauma/airway team intervention."
+        recommended_action = "CRITICAL RESUSCITATION: Mobilize trauma/code team to Resus Bay 1 immediately."
     elif triage_level == 2:
-        recommended_action = "RAPID CLINICAL REVIEW: Immediate bed placement & clinical evaluation within 10-15 minutes."
+        recommended_action = "EMERGENT CARE: Place in monitored bed immediately; continuous SpO₂ and ECG."
     elif is_uncertain:
-        recommended_action = "ACQUIRE MISSING DATA & VERIFY: Clinician verification required before low-urgency waiting."
+        if action_mod == "VERIFY_CRITICAL_VITALS":
+            recommended_action = "ACQUIRE VITALS: Missing critical parameters; complete bedside vitals immediately."
+        elif action_mod == "EXPEDITE_INITIAL_CLINICAL_VERIFICATION":
+            recommended_action = "VERIFY HISTORY: Zero prior records; conduct rapid physician intake check."
+        else:
+            recommended_action = "AMBIGUOUS SYMPTOM CHECK: Reassess patient at bedside to clarify trajectory."
     elif triage_level == 3:
-        recommended_action = "TIMED WAITING WITH SURVEILLANCE: Place in monitored queue; reassessment every 30 minutes."
+        recommended_action = "URGENT WORKUP: Assign acute cubicle; initiate standard labs/imaging."
     elif triage_level == 4:
-        recommended_action = "STANDARD WAITING: Safe for waiting room; re-check vitals in 60 minutes."
+        recommended_action = "SEMI-URGENT: Fast-track care area; reassess within 60 minutes."
     else:
         recommended_action = "ROUTINE CARE: Non-urgent fast-track queue; re-evaluate if symptoms change."
 
     return {
         "triage_level": triage_level,
-        "triage_category": category_map.get(triage_level, "Level 3 — Urgent"),
+        "triage_category": category_map[triage_level],
         "risk_score": round(calculated_risk, 1),
         "confidence_score": round(confidence_score, 1),
         "uncertainty_score": round(uncertainty_score, 1),
         "is_uncertain": is_uncertain,
         "age_group": age_group,
-        "reasons": reasons[:6],  # top concise reasons
+        "reasons": reasons,
         "uncertainty_reasons": uncertainty_reasons,
         "recommended_action": recommended_action,
         "is_red_flag": is_red_flag,

@@ -2,7 +2,7 @@
 title PatientTriage.ai Full-Stack Launcher
 echo ============================================================
 echo  PatientTriage.ai - Emergency Command Center
-echo  Decide First. Watch Continuously. Act in Time.
+echo  Triage is a snapshot. Risk isn't.
 echo ============================================================
 
 echo [1/2] Starting FastAPI Backend on http://localhost:8000 ...

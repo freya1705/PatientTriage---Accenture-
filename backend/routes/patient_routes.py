@@ -19,7 +19,7 @@ from ..services.audit_service import log_audit_event
 
 router = APIRouter(prefix="/api/patients", tags=["Patients"])
 
-def evaluate_patient_dynamic_state(patient_dict: dict, vital_history: list) -> dict:
+def evaluate_patient_dynamic_state(patient_dict: dict, vital_history: list, profile_type: str = "LEVEL_1_TRAUMA") -> dict:
     """Evaluates real-time staleness, deterioration, and attention gap for a patient."""
     triage_level = patient_dict["override_level"] if patient_dict.get("is_overridden") else patient_dict["triage_level"]
     
@@ -37,6 +37,7 @@ def evaluate_patient_dynamic_state(patient_dict: dict, vital_history: list) -> d
     # 3. Attention Gap Priority
     scoring_payload = {
         "id": patient_dict["id"],
+        "age": patient_dict.get("age", 30),
         "triage_level": triage_level,
         "risk_score": patient_dict["risk_score"],
         "deterioration_score": det_score,
@@ -48,10 +49,13 @@ def evaluate_patient_dynamic_state(patient_dict: dict, vital_history: list) -> d
         "safety_status": safety_status,
         "trajectory_status": traj_status
     }
-    action_info = compute_patient_action_priority(scoring_payload)
+    action_info = compute_patient_action_priority(scoring_payload, profile_type=profile_type)
 
     return {
         **patient_dict,
+        "is_attended": bool(patient_dict.get("is_attended", 0)),
+        "is_uncertain": bool(patient_dict.get("is_uncertain", 0)),
+        "is_overridden": bool(patient_dict.get("is_overridden", 0)),
         "display_triage_level": triage_level,
         "current_confidence": curr_conf,
         "safety_status": safety_status,
@@ -65,13 +69,19 @@ def evaluate_patient_dynamic_state(patient_dict: dict, vital_history: list) -> d
         "action_state": action_info["action_state"],
         "action_badge": action_info["action_badge"],
         "primary_action_reason": action_info["primary_action_reason"],
-        "action_reasons": action_info["action_reasons"]
+        "action_reasons": action_info["action_reasons"],
+        "failure_mode_category": action_info.get("failure_mode_category")
     }
 
 @router.get("")
 def list_patients(sort_by_action: bool = True):
     conn = get_db_connection()
     cursor = conn.cursor()
+
+    cursor.execute("SELECT profile_type FROM hospital_config WHERE id = 1")
+    cfg = cursor.fetchone()
+    profile_type = cfg["profile_type"] if cfg else "LEVEL_1_TRAUMA"
+
     cursor.execute("SELECT * FROM patients")
     patient_rows = cursor.fetchall()
 
@@ -86,7 +96,7 @@ def list_patients(sort_by_action: bool = True):
         v_rows = cursor.fetchall()
         vital_history = [dict(v) for v in v_rows]
 
-        eval_patient = evaluate_patient_dynamic_state(p_dict, vital_history)
+        eval_patient = evaluate_patient_dynamic_state(p_dict, vital_history, profile_type=profile_type)
         eval_patient["latest_vitals"] = vital_history[-1] if vital_history else {}
         patients.append(eval_patient)
 
@@ -102,6 +112,11 @@ def list_patients(sort_by_action: bool = True):
 def get_patient_detail(patient_id: str):
     conn = get_db_connection()
     cursor = conn.cursor()
+
+    cursor.execute("SELECT profile_type FROM hospital_config WHERE id = 1")
+    cfg = cursor.fetchone()
+    profile_type = cfg["profile_type"] if cfg else "LEVEL_1_TRAUMA"
+
     cursor.execute("SELECT * FROM patients WHERE id = ?", (patient_id,))
     row = cursor.fetchone()
     if not row:
@@ -122,7 +137,7 @@ def get_patient_detail(patient_id: str):
 
     conn.close()
 
-    eval_patient = evaluate_patient_dynamic_state(p_dict, vital_history)
+    eval_patient = evaluate_patient_dynamic_state(p_dict, vital_history, profile_type=profile_type)
     eval_patient["vital_history"] = vital_history
     eval_patient["audit_events"] = audit_events
     eval_patient["latest_vitals"] = vital_history[-1] if vital_history else {}

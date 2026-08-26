@@ -595,8 +595,8 @@
         "recorded_by": "Intake Nurse"
       }
     ],
-    "total_waiting_mins": 48,
-    "elapsed_since_vital": 48,
+    "total_waiting_mins": 68,
+    "elapsed_since_vital": 68,
     "is_attended": false,
     "attending_physician": null,
     "scenario_tag": "STALE_OBSERVATION_SAFETY_EXPIRED"

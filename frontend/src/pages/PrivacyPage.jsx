@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, Shield, Server, FileCheck, CheckCircle2, Building2 } from 'lucide-react';
+import { Lock, Shield, Server, FileCheck, CheckCircle2, Building2, AlertCircle } from 'lucide-react';
 
 export const PrivacyPage = () => {
   return (
@@ -15,9 +15,20 @@ export const PrivacyPage = () => {
               Privacy-by-Design, Security &amp; Hospital Scalability
             </h1>
             <p className="text-xs text-slate-500">
-              Enterprise architecture protecting sensitive patient vitals and ensuring zero data leakage.
+              Prototype architecture designed with patient data privacy, traceability, and edge safety principles.
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Regulatory & Safety Boundary Notice */}
+      <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900 flex items-start space-x-3">
+        <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+        <div className="space-y-1">
+          <p className="font-bold">Prototype Research &amp; Competition Notice</p>
+          <p className="text-amber-800 text-[11px] leading-relaxed">
+            PatientTriage.ai is a clinical decision-support prototype evaluated on synthetic physiological cohorts for the Accenture Innovation Challenge. It is not a certified medical device and does not replace professional clinical judgment.
+          </p>
         </div>
       </div>
 
@@ -65,9 +76,9 @@ export const PrivacyPage = () => {
             AI recommendations never supersede clinical judgment. All override decisions require clinical role verification and mandatory justification logs.
           </p>
           <ul className="text-xs text-slate-500 space-y-1 list-disc list-inside pt-1">
-            <li>Immutable audit logging for medical malpractice defense</li>
+            <li>Append-only audit logging designed for clinical traceability and accountability</li>
             <li>Counterfactual downgrade guardrail preventing inadvertent under-triage</li>
-            <li>Meets EU AI Act High-Risk Healthcare Annex requirements</li>
+            <li>Designed in alignment with EU AI Act high-risk transparency principles</li>
           </ul>
         </div>
 

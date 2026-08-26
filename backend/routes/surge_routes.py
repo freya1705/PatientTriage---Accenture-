@@ -88,9 +88,9 @@ def toggle_surge_mode(req: SurgeToggleRequest):
             conn=conn
         )
     else:
-        # Revert back to 20 baseline
-        cursor.execute("DELETE FROM patients WHERE id LIKE 'P-02%' OR id LIKE 'P-03%' OR id LIKE 'P-04%' OR id LIKE 'P-05%' OR id LIKE 'P-06%'")
-        cursor.execute("DELETE FROM vital_records WHERE patient_id LIKE 'P-02%' OR patient_id LIKE 'P-03%' OR patient_id LIKE 'P-04%' OR patient_id LIKE 'P-05%' OR patient_id LIKE 'P-06%'")
+        # Revert back to 20 baseline (delete P-021 to P-060 only, preserving P-001 to P-020)
+        cursor.execute("DELETE FROM patients WHERE id >= 'P-021'")
+        cursor.execute("DELETE FROM vital_records WHERE patient_id >= 'P-021'")
 
         log_audit_event(
             event_type="SURGE_MODE_DEACTIVATED",
@@ -101,12 +101,17 @@ def toggle_surge_mode(req: SurgeToggleRequest):
             conn=conn
         )
 
+    # Get total count
+    cursor.execute("SELECT COUNT(*) FROM patients")
+    total_census = cursor.fetchone()[0]
+
     conn.commit()
     conn.close()
 
     return {
         "success": True,
         "surge_active": req.active,
+        "total_census": total_census,
         "message": f"Surge mode {'activated (60 patients loaded)' if req.active else 'deactivated (reverted to standard 20)'}"
     }
 

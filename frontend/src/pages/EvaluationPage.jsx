@@ -6,7 +6,8 @@ import {
   XCircle,
   RefreshCw,
   Award,
-  Sparkles
+  Sparkles,
+  Info
 } from 'lucide-react';
 
 export const EvaluationPage = () => {
@@ -148,6 +149,14 @@ export const EvaluationPage = () => {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Evaluation Disclaimer */}
+        <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center space-x-2 text-[11px] text-slate-500 mt-2">
+          <Info className="w-4 h-4 text-slate-400 shrink-0" />
+          <span>
+            *Results reflect simulated evaluations across 20 synthetic clinical benchmark scenarios for the Accenture Innovation Challenge. Real-world deployment requires prospective clinical trial validation.
+          </span>
         </div>
       </div>
     </div>
