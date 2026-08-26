@@ -16,23 +16,25 @@
    - 5.3 Uncertainty-as-Risk Engine ("Unknown ≠ Safe")
    - 5.4 Vital Trajectory & Delta Velocity Analysis
    - 5.5 Dynamic Confidence Decay & Safety Expiry ($\tau_{\text{staleness}}$)
-   - 5.6 The Attention Gap Priority Equation
+   - 5.6 The Attention Gap Priority Equation & Default Formula Weights
    - 5.7 Counterfactual Downgrade Safety Verification
-6. [Implementation Details & Tech Stack](#6-implementation-details--tech-stack)
-7. [Key Features & Clinical Workflow](#7-key-features--clinical-workflow)
-8. [Requirements & Prerequisites](#8-requirements--prerequisites)
-9. [Installation & Quick Start Guide](#9-installation--quick-start-guide)
-10. [Configuration & Hospital Deployment Profiles](#10-configuration--hospital-deployment-profiles)
-11. [Benchmark Cohort & Empirical Impact Evaluation](#11-benchmark-cohort--empirical-impact-evaluation)
-12. [Security, Privacy-by-Design & Governance](#12-security-privacy-by-design--governance)
-13. [Troubleshooting & Frequently Asked Questions (FAQ)](#13-troubleshooting--frequently-asked-questions-faq)
-14. [Maintainers, Project Links & Regulatory Disclaimer](#14-maintainers-project-links--regulatory-disclaimer)
+6. [Competitive Differentiation & The "Moat" (Vs. Native EHR Scores)](#6-competitive-differentiation--the-moat-vs-native-ehr-scores)
+7. [Implementation Details & Tech Stack](#7-implementation-details--tech-stack)
+8. [Key Features & Clinical Workflow](#8-key-features--clinical-workflow)
+9. [Requirements & Prerequisites](#9-requirements--prerequisites)
+10. [Installation & Quick Start Guide](#10-installation--quick-start-guide)
+11. [Configuration & Hospital Deployment Profiles](#11-configuration--hospital-deployment-profiles)
+12. [Benchmark Cohort & Empirical Impact Evaluation](#12-benchmark-cohort--empirical-impact-evaluation)
+13. [Phased Clinical Trial Roadmap & Precise Trial Endpoints](#13-phased-clinical-trial-roadmap--precise-trial-endpoints)
+14. [Security, Privacy-by-Design & Governance](#14-security-privacy-by-design--governance)
+15. [Troubleshooting & Frequently Asked Questions (FAQ)](#15-troubleshooting--frequently-asked-questions-faq)
+16. [Maintainers, Project Links & Regulatory Disclaimer](#16-maintainers-project-links--regulatory-disclaimer)
 
 ---
 
 ## 1. Project Overview & Introduction
 
-**PatientTriage.ai** is an emergency department decision-support system and continuous physiological safety surveillance layer. While traditional emergency triage treats prioritization as a static, one-time snapshot at hospital intake, PatientTriage.ai continuously tracks patient wait times, physiological trajectory velocity ($\Delta\text{SpO}_2, \Delta\text{HR}$), data uncertainty, and active clinical attention.
+**PatientTriage.ai** is an emergency department clinical decision-support system and continuous physiological safety surveillance layer. While traditional emergency triage treats patient prioritization as a static, one-time snapshot at hospital intake, PatientTriage.ai continuously tracks patient waiting times, physiological trajectory velocity ($\Delta\text{SpO}_2, \Delta\text{HR}$), data uncertainty, and active clinical attention.
 
 The platform answers the single most critical operational question facing emergency clinicians:
 > **“Who in the waiting room is no longer safe to keep waiting?”**
@@ -52,11 +54,11 @@ In emergency departments globally, intake triage is performed using standard 5-l
 Traditional static triage exhibits three concrete systemic failure modes:
 
 1. **Silent Post-Triage Waiting Room Deterioration**:
-   A patient triaged as Level 3 (Urgent) or Level 4 (Less Urgent) may develop acute respiratory failure, septic shock, or internal hemorrhage while unmonitored in the waiting room. Static systems cannot re-rank patients without manual nurse intervention.
+   A patient triaged as Level 3 (Urgent) or Level 4 (Less Urgent) may develop acute respiratory failure, septic shock, or internal hemorrhage while unmonitored in the waiting room. Because traditional systems do not re-rank patients dynamically, physiological decline may remain undetected until a subsequent reassessment or clinical deterioration becomes apparent.
 2. **Missing Vitals & Stale Data Assumed Safe**:
    When intake records lack vital parameters (such as pulse oximetry or blood pressure), standard systems default to lower severity bands, giving false reassurance. Under the clinical reality of *"Unknown is NOT Safe"*, missing data should heighten vigilance.
 3. **The Clinical Attention Bottleneck**:
-   Static triage lists rank patients purely by initial acuity. Consequently, critical patients who are *already attended* by trauma teams occupy the top slots, while *unattended deteriorating patients* remain buried lower down the list.
+   Static triage lists rank patients purely by initial acuity. Consequently, critical patients who are *already attended* by emergency physicians occupy the top slots, while *unattended deteriorating patients* remain buried lower down the list.
 
 ---
 
@@ -87,7 +89,7 @@ PatientTriage.ai transforms triage from a **static admission gate** into a **con
 
 ## 4. System Architecture & 3-Tier Layered Design
 
-To ensure patient safety and ethical AI alignment, PatientTriage.ai implements a **3-Tier Layered Architecture**:
+To ensure patient safety, mathematical explainability, and ethical governance, PatientTriage.ai implements a **3-Tier Layered Architecture**:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
@@ -98,17 +100,18 @@ To ensure patient safety and ethical AI alignment, PatientTriage.ai implements a
                                      │
 ┌────────────────────────────────────▼─────────────────────────────────────┐
 │               TIER 2: AI & DECISION-SUPPORT SURVEILLANCE                 │
-│  • Continuous Vital Trajectory Velocity (ΔSpO₂, ΔHR, ΔSBP, ΔRR)          │
-│  • Dynamic Confidence Decay (Evidence half-life based on elapsed time)    │
-│  • Uncertainty-as-Risk Engine ("Unknown ≠ Safe" penalty)                 │
-│  • Attention Gap Re-Ranking (Clinical Severity - Active Coverage)        │
-│  • Dynamic Natural Language Explainability ("Why Rank #1?")              │
+│  • The intelligence layer performs continuous physiological trend        │
+│    analysis, uncertainty scoring, confidence decay, and dynamic          │
+│    attention-gap prioritization, while deterministic safety rules        │
+│    provide hard guardrails.                                              │
+│  • Multimodal Vital Stream Ingestion: Compatible with BLE wearable       │
+│    pulse oximetry rings/wristbands, waiting room automated kiosks,       │
+│    and rapid tablet entry during nurse walking rounds.                   │
 └────────────────────────────────────┬─────────────────────────────────────┘
                                      │
 ┌────────────────────────────────────▼─────────────────────────────────────┐
 │                     TIER 3: CLINICIAN GOVERNANCE                         │
-│  • Human-in-the-Loop: Licensed Clinicians retain final authority         │
-│  • Mandatory Rationale Capture for all overrides                         │
+│  • Clinician override authority with mandatory justification recording   │
 │  • Append-Only Audit Ledger for HIPAA/GDPR clinical traceability         │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
@@ -151,11 +154,16 @@ $$\text{Confidence}(t) = \text{Base Confidence} \times \max\left(0.20, 1.0 - \fr
 
 Standard reassessment windows: Level 1 = 5m, Level 2 = 15m, Level 3 = 30m, Level 4 = 60m, Level 5 = 120m. When elapsed time exceeds the window, safety status flips to `EXPIRED`, triggering `[ REASSESS NOW ]`.
 
-### 5.6 The Attention Gap Priority Equation
+### 5.6 The Attention Gap Priority Equation & Default Formula Weights
 The **Action Priority Score** surfaces unattended deteriorating cases:
 $$\text{Action Priority} = (w_r \cdot \text{Risk} + \text{Urgency}) + (w_d \cdot \text{Deterioration}) + (w_s \cdot \text{Staleness}) + \text{Wait Hazard} + (w_u \cdot \text{Uncertainty}) - (w_c \cdot \text{Clinical Coverage})$$
 
-Where $w_c$ deducts up to $-35$ points when a patient is actively being managed by an attending physician (`is_attended = True`), allowing unattended waiting patients to rise to Rank #1.
+**Default Coefficient Bounds**:
+- $w_r$ (Risk / Urgency Weight): **$1.0$** (Base clinical risk score $0–100$)
+- $w_d$ (Deterioration Velocity): **$+25\text{ to }+40\text{ pts}$** (triggered when $\Delta\text{SpO}_2 \le -5\%$ or $\Delta\text{HR} \ge +20\text{ bpm}$)
+- $w_s$ (Staleness Penalty): **$+20\text{ to }+35\text{ pts}$** (upon safety window expiry)
+- $w_u$ (Uncertainty Penalty): **$+15\text{ to }+25\text{ pts}$** (missing key vitals or zero history)
+- $w_c$ (Clinical Coverage Offset): **$-35\text{ pts}$** (deducted when `is_attended = True`, surfacing unattended waiting patients to Rank #1)
 
 ### 5.7 Counterfactual Downgrade Safety Verification
 Clinicians attempting to de-escalate triage level (e.g. Level 2 $\rightarrow$ Level 4) must pass strict objective checks:
@@ -166,7 +174,18 @@ Clinicians attempting to de-escalate triage level (e.g. Level 2 $\rightarrow$ Le
 
 ---
 
-## 6. Implementation Details & Tech Stack
+## 6. Competitive Differentiation & The "Moat" (Vs. Native EHR Scores)
+
+| Dimension | Native EHR Scores (Epic EDI, Cerner MEWS / NEWS) | PatientTriage.ai (Continuous Safety Layer) |
+|---|---|---|
+| **Target Setting** | **Inpatient Bed Focus**: Designed for admitted floor patients with continuous bedside monitors. | **Waiting Room Focus**: Tailored for chaotic, ambulatory waiting lounges with intermittent vitals. |
+| **Attention Gap Differentiator** | **Severity Only**: Only scores physiological derangement; blind to whether a doctor is actively treating the patient. | **Need vs. Coverage**: Dynamic $w_c$ offset surfaces unattended deteriorating cases over attended critical cases. |
+| **Evidence Staleness Decay** | **Static Validity**: Treats a 4-hour-old vital as equally valid until manually replaced. | **Dynamic Decay ($\tau_{\text{staleness}}$)**: Systematically decays confidence as observations age, triggering automated safety expiry. |
+| **Uncertainty Handling** | **False Reassurance**: Treats missing data as normal/unscored. | **"Unknown is NOT Safe"**: Penalizes missing fields and mandates bedside vital acquisition. |
+
+---
+
+## 7. Implementation Details & Tech Stack
 
 ```
 PatientTriageAI/
@@ -219,7 +238,7 @@ PatientTriageAI/
 
 ---
 
-## 7. Key Features & Clinical Workflow
+## 8. Key Features & Clinical Workflow
 
 1. **3-Zone Clinical Command Center**: Left navigation rail, Center live action workspace, and Right persistent safety summary panel.
 2. **Hero Live Action Queue**: Real-time rank ordering with SpO₂ sparklines, Attention Gap meters, and one Next-Best-Action button.
@@ -231,7 +250,7 @@ PatientTriageAI/
 
 ---
 
-## 8. Requirements & Prerequisites
+## 9. Requirements & Prerequisites
 
 - **Operating System**: Windows 10/11, macOS, or Linux
 - **Python**: Python 3.10+ (Tested on Python 3.13.2)
@@ -240,7 +259,7 @@ PatientTriageAI/
 
 ---
 
-## 9. Installation & Quick Start Guide
+## 10. Installation & Quick Start Guide
 
 ### Step 1: Clone Repository
 ```bash
@@ -278,7 +297,7 @@ python -m pytest -v
 
 ---
 
-## 10. Configuration & Hospital Deployment Profiles
+## 11. Configuration & Hospital Deployment Profiles
 
 PatientTriage.ai supports customizable hospital configuration profiles in `backend/services/attention_gap_engine.py`:
 
@@ -292,32 +311,51 @@ PatientTriage.ai supports customizable hospital configuration profiles in `backe
 
 ---
 
-## 11. Benchmark Cohort & Empirical Impact Evaluation
+## 12. Benchmark Cohort & Empirical Impact Evaluation
 
 Evaluated across 20 synthetic clinical scenarios representing 5 systematic failure modes:
 
-| Metric Dimension | Traditional Static Triage (Baseline) | PatientTriage.ai (Continuous Safety) | Measured Impact |
+| Metric Dimension | Traditional Static Triage (Baseline) | PatientTriage.ai (Continuous Safety) | Measured Benchmark Delta |
 |---|---|---|---|
-| **Waiting Deterioration Catch Rate** | **0%** (Undetected until complaint) | **100%** (Continuous delta surveillance) | **+100% Safety Catch** |
-| **Stale Observation Flagging Rate** | **0%** (Assumed permanently safe) | **100%** (Flipped to `SAFETY_EXPIRED`) | **Zero unmonitored stale waits** |
-| **False Reassurance on Missing Vitals** | **High** (Missing SpO₂/BP assumed benign) | **0% False Reassurance** (Unknown $\neq$ Safe) | **Eliminates under-triage** |
+| **Waiting Deterioration Catch Rate** | **0/20 detected** (Undetected until complaint) | **20/20 synthetic scenarios detected** | **100% Benchmark Coverage** |
+| **Stale Observation Flagging Rate** | **0/20 flagged** (Assumed permanently safe) | **20/20 synthetic cases flagged** (`EXPIRED`) | **Zero unmonitored stale waits** |
+| **False Reassurance on Missing Vitals** | **High** (Missing vitals treated as normal) | **0% False Reassurance** (Unknown $\neq$ Safe) | **Eliminates under-triage** |
 | **Attention Gap Optimization** | **None** (Attended critical cases block queue) | **Active** (Unattended deteriorating cases elevated) | **Optimized clinician utilization** |
-| **Unsafe Priority Downgrades Blocked** | **0 Guardrails** | **100% Guarded** (Requires objective stability) | **100% Guarded against under-triage** |
+| **Unsafe Priority Downgrades Blocked** | **0 Guardrails** | **100% Guarded** (Requires objective stability) | **100% Downgrade Guarded** |
 
 *Note: Results reflect simulated evaluations on 20 synthetic benchmark scenarios for prototype demonstration.*
 
 ---
 
-## 12. Security, Privacy-by-Design & Governance
+## 13. Phased Clinical Trial Roadmap & Precise Trial Endpoints
+
+```
+2026 Q3               2026 Q4               2027 Q1-Q2            2027 Q3-Q4
+┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│     PHASE 1      │  │     PHASE 2      │  │     PHASE 3      │  │     PHASE 4      │
+│ Synthetic Cohort │  │  Shadow Clinical │  │  Live Hospital   │  │ Enterprise Multi-│
+│ & Lab Validation │  │  Trial & FHIR    │  │  Go-Live & ED    │  │ Hospital Network │
+│                  │  │  Integration     │  │  Deployment      │  │ Scaling          │
+└──────────────────┘  └──────────────────┘  └──────────────────┘  └──────────────────┘
+```
+
+### Precise Clinical Trial Primary Endpoints:
+- **Primary Clinical Safety Endpoint**: Significant reduction in **Mean Time to Escalation (MTTE)** for decompensating waiting room patients (target: $>45\%$ faster escalation).
+- **Operational Ergonomic Endpoint**: Nurse false-alarm rate maintained strictly below **$< 2$ non-actionable alerts per nurse per shift** via queue compression.
+- **Economic & Operational Endpoint**: Measured delta in **Left-Without-Being-Seen (LWBS)** rate over a 90-day pilot deployment (target: $\ge 25\%$ reduction).
+
+---
+
+## 14. Security, Privacy-by-Design & Governance
 
 - **Zero PHI**: 100% synthetic physiological datasets; no real patient health information.
 - **Air-Gapped Operation**: Runs entirely on local edge hardware with zero external cloud LLM dependencies.
 - **Append-Only Audit Ledger**: Every intake, vital update, deterioration event, and clinician override is recorded in an immutable SQLite audit log with timestamps and clinical roles.
-- **Human Oversight**: AI recommendations never supersede licensed clinician authority.
+- **Human Oversight**: Clinician override authority with mandatory justification recording.
 
 ---
 
-## 13. Troubleshooting & Frequently Asked Questions (FAQ)
+## 15. Troubleshooting & Frequently Asked Questions (FAQ)
 
 ### Troubleshooting
 - **Port 8000 already in use**: Terminate existing Python process with `Stop-Process -Name python -Force` or specify `--port 8001`.
@@ -332,7 +370,7 @@ Evaluated across 20 synthetic clinical scenarios representing 5 systematic failu
 
 ---
 
-## 14. Maintainers, Project Links & Regulatory Disclaimer
+## 16. Maintainers, Project Links & Regulatory Disclaimer
 
 ### Maintainers & Team
 - **Lead Developer & Healthcare Product Designer**: Freya & Team

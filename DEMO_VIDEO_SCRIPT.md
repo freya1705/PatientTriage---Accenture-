@@ -11,7 +11,7 @@
 |---|---|---|---|
 | **Scene 1** | `0:00 – 0:30` | **The Hook & Problem** | Live Command Center & Right Safety Summary Panel |
 | **Scene 2** | `0:30 – 0:55` | **"Unknown ≠ Safe" Engine** | Rapid Intake Page & Missing Vitals Preset |
-| **Scene 3** | `0:55 – 1:30` | **The Hero Demo: Deterioration & Attention Gap** | Live Action Queue & "Simulate Vital Drop" |
+| **Scene 3** | `0:55 – 1:30` | **The Hero Demo: Deterioration & Attention Gap** | Live Action Queue & "Simulate Vital Drop" *(2s Pause)* |
 | **Scene 4** | `1:30 – 1:55` | **Explainable AI & Clinician Governance** | Decision Rationale Modal & Override Audit Trail |
 | **Scene 5** | `1:55 – 2:25` | **Scalability: 3× Surge & Profiles** | 1-Click 🚨 3× Surge Mode & Hospital Profile Toggle |
 | **Scene 6** | `2:25 – 2:45` | **Measurable Impact & Closing** | Empirical Evaluation Matrix Page & GitHub Outro |
@@ -50,9 +50,10 @@
 ### 📍 Scene 3: The Killer Feature — Deterioration & Attention Gap (`0:55 – 1:30`)
 - **Visual on Screen:**  
   Navigate back to **Command Center**. Point out patient **`P-002`** (Marcus Vance — Attended STEMI with a doctor) vs. patient **`P-017`** (Grace Hopper — Unattended viral pneumonia in the waiting room).
-- **Presenter Action:**  
-  Click the **`⚡ Simulate Vital Drop`** button on **`P-017`**.  
-  Watch `P-017`'s SpO₂ drop from $96\% \rightarrow 89\%$, and see `P-017` dynamically surge straight to **Rank #1** in the Live Action Queue with `🔴 RAPID DETERIORATION` and action `[ REASSESS NOW ]`.
+- **Presenter Action (KEY TRANSITION TIMING):**  
+  👉 **Pause cursor for 2 seconds** over `P-017` so judges clearly see her current lower rank and baseline SpO₂ of 96%.  
+  👉 Click the **`⚡ Simulate Vital Drop`** button.  
+  👉 **Pause cursor for 2 seconds** as `P-017`'s SpO₂ drops from $96\% \rightarrow 89\%$, and see `P-017` dynamically surge straight to **Rank #1** in the Live Action Queue with `🔴 RAPID DETERIORATION` and action `[ REASSESS NOW ]`.
 - **Voiceover (Audio Track):**  
   > *"Here is our core differentiator: The **Attention Gap Engine**.*  
   >  
@@ -67,11 +68,11 @@
 - **Visual on Screen:**  
   Click the **`🔍 Info`** icon on `P-017` to open the **Decision Explainability Modal**. Then open patient dossier and click **`🛡️ Override`**.
 - **Presenter Action:**  
-  Show the plain-English physiological rationale. In the override modal, show the Counterfactual Downgrade Safety check and enter a mandatory clinical rationale. Then click **Audit Ledger** on the sidebar to show the tamper-evident entry.
+  Show the plain-English physiological rationale. In the override modal, show the Counterfactual Downgrade Safety check and enter a mandatory clinical rationale. Then click **Audit Ledger** on the sidebar to show the append-only entry.
 - **Voiceover (Audio Track):**  
-  > *"Crucially, AI never operates as an opaque black box. Clicking explainability displays exact physiological velocity and staleness contributors.*  
+  > *"The intelligence layer performs continuous physiological trend analysis, uncertainty scoring, confidence decay and dynamic attention-gap prioritization, while deterministic safety rules provide hard guardrails and clinicians retain final decision authority.*  
   >  
-  > *Furthermore, licensed clinicians maintain 100% governance. Our Counterfactual Downgrade Guardrail blocks unsafe de-escalation without objective proof of stability, and all overrides require mandatory rationale logged to an append-only audit ledger."*
+  > *Our Counterfactual Downgrade Guardrail blocks unsafe de-escalation without objective proof of stability, and all overrides require mandatory rationale logged to an append-only audit ledger."*
 
 ---
 
@@ -94,9 +95,9 @@
 - **Visual on Screen:**  
   Navigate to **Baseline vs AI Impact** (`EvaluationPage.jsx`). Show the side-by-side evaluation table.
 - **Presenter Action:**  
-  Point to the $100\%$ deterioration detection rate and zero unmonitored stale waits. Transition to closing title card with GitHub link.
+  Point to the $20/20$ synthetic benchmark detection rate and zero unmonitored stale waits. Transition to closing title card with GitHub link.
 - **Voiceover (Audio Track):**  
-  > *"Across 20 synthetic clinical benchmark scenarios, PatientTriage.ai achieved a 100% deterioration detection rate and completely eliminated unmonitored stale waits.*  
+  > *"Across 20 synthetic clinical benchmark scenarios, PatientTriage.ai detected 20 out of 20 deteriorating cases and completely eliminated unmonitored stale waits.*  
   >  
   > *Built with Python 3.13, FastAPI, and React 19, PatientTriage.ai is open-source, air-gapped, and ready for deployment.*  
   >  

@@ -105,17 +105,6 @@ def build_pdf():
         keepWithNext=True
     )
 
-    h2_style = ParagraphStyle(
-        'CustomH2',
-        fontName='Helvetica-Bold',
-        fontSize=9.5,
-        leading=12.5,
-        textColor=colors.HexColor('#0369a1'),
-        spaceBefore=6,
-        spaceAfter=2,
-        keepWithNext=True
-    )
-
     body_style = ParagraphStyle(
         'CustomBody',
         fontName='Helvetica',
@@ -178,34 +167,36 @@ def build_pdf():
     story.append(Paragraph(
         "Emergency department (ED) crowding is a global healthcare crisis with over 140M annual visits in the US alone. "
         "Traditional emergency triage operates on an outdated premise: <b>a single static snapshot taken at intake</b>. "
-        "Once triaged, patients wait unmonitored for 3 to 6 hours. When patients silently deteriorate, the results are catastrophic: "
+        "Once triaged, patients wait unmonitored for 3 to 6 hours; physiological decline may remain undetected until a subsequent "
+        "reassessment or clinical deterioration becomes apparent. When unmonitored patients silently deteriorate, the results are catastrophic: "
         "preventable in-hospital cardiac arrests, unanticipated ICU transfers, heightened malpractice claims, and severe nurse burnout.",
         body_style
     ))
     story.append(Paragraph(
         "<b>PatientTriage.ai</b> delivers a continuous physiological safety layer that monitors vital velocity (&Delta;SpO₂, &Delta;HR), "
         "dynamic evidence decay (&tau;<sub>staleness</sub>), data uncertainty (<i>Unknown is NOT Safe</i>), and physician coverage (<b>The Attention Gap</b>). "
+        "The intelligence layer performs continuous trend analysis and prioritization, while deterministic safety rules provide hard guardrails. "
         "It generates <b>$3.82M in net annual value</b> per 500-bed hospital while eliminating silent waiting room mortality.",
         body_style
     ))
 
-    # Problem Framing
-    story.append(Paragraph("1. Problem Framing: 3 Systemic Failure Modes of Static Triage", h1_style))
-    story.append(Paragraph("• <b>1. Silent Waiting Room Decompensation:</b> ESI Level 3/4 patients silently worsen without automated alerts until physical collapse.", bullet_style))
-    story.append(Paragraph("• <b>2. The 'Missing Data Is Safe' Assumption:</b> Missing vitals default to low urgency. In acute medicine, <i>Unknown is NOT Safe</i>.", bullet_style))
-    story.append(Paragraph("• <b>3. The Attention Bottleneck:</b> Attended critical cases block static lists, while <i>unattended deteriorating patients</i> remain buried.", bullet_style))
+    # Problem Framing & Moat
+    story.append(Paragraph("1. Problem Framing &amp; Competitive Moat (Vs. Native EHR Scores)", h1_style))
+    story.append(Paragraph("• <b>Silent Decompensation:</b> ESI Level 3/4 patients worsen unmonitored; physiological decline may remain undetected until subsequent checks.", bullet_style))
+    story.append(Paragraph("• <b>The 'Missing Data Is Safe' Myth:</b> Legacy systems treat missing vitals as benign. Under <i>Unknown is NOT Safe</i>, missing data heightens vigilance.", bullet_style))
+    story.append(Paragraph("• <b>Competitive Moat vs. Native EHRs (Epic EDI / Cerner MEWS):</b> Native EHR scores are designed for admitted inpatients in hospital beds and only score clinical severity. PatientTriage.ai is purpose-built for the waiting room and uniquely accounts for <b>physician coverage</b> and <b>evidence staleness decay</b>.", bullet_style))
 
     # Solution & Architecture
-    story.append(Paragraph("2. Solution Design & 3-Tier Layered Architecture", h1_style))
+    story.append(Paragraph("2. Solution Design &amp; 3-Tier Layered Architecture", h1_style))
     story.append(Paragraph(
         "PatientTriage.ai enforces a strict 3-tier architecture: <b>Tier 1: Deterministic Safety Layer</b> (hard red-flags and downgrade blocking); "
-        "<b>Tier 2: AI Decision-Support Layer</b> (vital velocity, dynamic confidence decay, and Attention Gap re-ranking); and "
-        "<b>Tier 3: Clinician Governance Layer</b> (licensed clinician override with append-only audit logging). Runs air-gapped on edge hardware with sub-15ms latency.",
+        "<b>Tier 2: AI Decision-Support Layer</b> (vital velocity, dynamic confidence decay, and Attention Gap re-ranking with multimodal BLE sensor and kiosk ingestion); and "
+        "<b>Tier 3: Clinician Governance Layer</b> (clinician override authority with mandatory justification and append-only audit logging). Runs air-gapped on edge hardware with sub-15ms latency.",
         body_style
     ))
 
     # Target Users
-    story.append(Paragraph("3. Target Users & Stakeholder Value Propositions", h1_style))
+    story.append(Paragraph("3. Target Users &amp; Stakeholder Value Propositions", h1_style))
     user_data = [
         [Paragraph("<b>Stakeholder</b>", body_style), Paragraph("<b>Primary Clinical / Financial Pain Point</b>", body_style), Paragraph("<b>PatientTriage.ai Value Proposition</b>", body_style)],
         [Paragraph("<b>Triage Nurses (RNs)</b>", body_style), Paragraph("Overwhelmed tracking 40+ waiting patients; fear of silent deterioration.", body_style), Paragraph("Surfaces Top 3 actionable tasks with single Next-Best-Action buttons.", body_style)],
@@ -228,7 +219,7 @@ def build_pdf():
     story.append(PageBreak())
 
     # Financial ROI Table
-    story.append(Paragraph("4. Business Case, Financial ROI & Impact Model (500-Bed Hospital)", h1_style))
+    story.append(Paragraph("4. Business Case, Financial ROI &amp; Impact Model (500-Bed Hospital)", h1_style))
     story.append(Paragraph("<i>Model based on 65,000 annual ED visits, 500 acute care beds, and $1,200 average ED revenue per visit:</i>", body_style))
 
     roi_data = [
@@ -236,10 +227,10 @@ def build_pdf():
         [Paragraph("<b>1. LWBS Revenue Recovery</b>", body_style), Paragraph("3,120 patients/yr leave (4.8%)", body_style), Paragraph("30% reduction via proactive re-engagement", body_style), Paragraph("<font color='#047857'><b>+$1,123,200 / yr</b></font>", body_style)],
         [Paragraph("<b>2. Avoided ICU Transfers</b>", body_style), Paragraph("145 waiting room ICU crashes/yr", body_style), Paragraph("64% reduction (93 avoided ICU stays @ $15k)", body_style), Paragraph("<font color='#047857'><b>+$1,395,000 / yr</b></font>", body_style)],
         [Paragraph("<b>3. Malpractice Risk Mitigation</b>", body_style), Paragraph("$1.2M annual liability reserve", body_style), Paragraph("40% reduction via documented audit trail", body_style), Paragraph("<font color='#047857'><b>+$480,000 / yr</b></font>", body_style)],
-        [Paragraph("<b>4. Nurse Retention & Overtime</b>", body_style), Paragraph("26.8% nurse turnover (14 replacements)", body_style), Paragraph("4 replacements avoided + 15% overtime reduction", body_style), Paragraph("<font color='#047857'><b>+$378,000 / yr</b></font>", body_style)],
-        [Paragraph("<b>5. ED Throughput & Boarding</b>", body_style), Paragraph("248 mins average wait/boarding", body_style), Paragraph("30-minute reduction via optimized dispatch", body_style), Paragraph("<font color='#047857'><b>+$445,000 / yr</b></font>", body_style)],
+        [Paragraph("<b>4. Nurse Retention &amp; Overtime</b>", body_style), Paragraph("26.8% nurse turnover (14 replacements)", body_style), Paragraph("4 replacements avoided + 15% overtime reduction", body_style), Paragraph("<font color='#047857'><b>+$378,000 / yr</b></font>", body_style)],
+        [Paragraph("<b>5. ED Throughput &amp; Boarding</b>", body_style), Paragraph("248 mins average wait/boarding", body_style), Paragraph("30-minute reduction via optimized dispatch", body_style), Paragraph("<font color='#047857'><b>+$445,000 / yr</b></font>", body_style)],
         [Paragraph("<b>TOTAL GROSS ANNUAL VALUE</b>", body_style), Paragraph("—", body_style), Paragraph("—", body_style), Paragraph("<font color='#047857'><b>$3,821,200 / yr</b></font>", body_style)],
-        [Paragraph("<b>Software Subscription & Support</b>", body_style), Paragraph("—", body_style), Paragraph("Enterprise Tier License", body_style), Paragraph("<font color='#b91c1c'>-$240,000 / yr</font>", body_style)],
+        [Paragraph("<b>Software Subscription &amp; Support</b>", body_style), Paragraph("—", body_style), Paragraph("Enterprise Tier License", body_style), Paragraph("<font color='#b91c1c'>-$240,000 / yr</font>", body_style)],
         [Paragraph("<b>NET ANNUAL ROI TO HOSPITAL</b>", body_style), Paragraph("—", body_style), Paragraph("<b>14.9x Net Return on Investment</b>", body_style), Paragraph("<font color='#047857'><b>+$3,581,200 / yr</b></font>", body_style)],
     ]
     roi_table = Table(roi_data, colWidths=[1.9 * inch, 1.8 * inch, 2.1 * inch, 1.7 * inch])
@@ -248,26 +239,25 @@ def build_pdf():
         ('BOX', (0, 0), (-1, -1), 0.5, colors.HexColor('#cbd5e1')),
         ('INNERGRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#e2e8f0')),
         ('BACKGROUND', (0, -1), (-1, -1), colors.HexColor('#ecfdf5')),
-        ('TOPPADDING', (0, 0), (-1, -1), 3),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 3),
+        ('TOPPADDING', (0, 0), (-1, -1), 2.5),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 2.5),
     ]))
     story.append(roi_table)
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 3))
 
-    # Pricing & Commercialization
-    story.append(Paragraph("5. Commercialization, Pricing & Accenture Synergy", h1_style))
-    story.append(Paragraph("• <b>Tiered B2B SaaS Subscriptions:</b> Community Rural Clinic ($48k/yr), Regional Acute Hospital ($120k/yr), Academic Level-1 Trauma Center ($240k/yr).", bullet_style))
-    story.append(Paragraph("• <b>One-Time Integration Services:</b> $75,000–$150,000 covering HL7 FHIR connector setup and clinician workflow onboarding.", bullet_style))
-    story.append(Paragraph("• <b>Accenture Strategic Synergy:</b> Accenture Health & Life Sciences serves as the prime system integrator, bundling PatientTriage.ai into broader Emergency Department Digital Transformation and Throughput Optimization engagements.", bullet_style))
+    # Formula Weights & Parameters
+    story.append(Paragraph("5. Default Attention Gap Coefficients &amp; Formula Weights", h1_style))
+    story.append(Paragraph("<code>Action Priority = (w_r &times; Risk + Urgency) + (w_d &times; Deterioration) + (w_s &times; Staleness) + Wait Hazard + (w_u &times; Uncertainty) - (w_c &times; Clinical Coverage)</code>", code_style))
+    story.append(Paragraph("<b>Parameter Bounds:</b> <code>w_r = 1.0</code> &bull; <code>w_d = +25 to +40 pts</code> (&Delta;SpO₂ &le; -5% / &Delta;HR &ge; +20 bpm) &bull; <code>w_s = +20 to +35 pts</code> (expiry) &bull; <code>w_u = +15 to +25 pts</code> (missing vitals) &bull; <code>w_c = -35 pts</code> (when <code>is_attended = True</code>).", body_style))
 
-    # Phased Roadmap
-    story.append(Paragraph("6. Phased Multi-Year Implementation Roadmap", h1_style))
+    # Phased Roadmap & Precise Endpoints
+    story.append(Paragraph("6. Phased Implementation Roadmap &amp; Precise Trial Endpoints", h1_style))
     roadmap_data = [
-        [Paragraph("<b>Phase</b>", body_style), Paragraph("<b>Timeline</b>", body_style), Paragraph("<b>Milestones &amp; Deliverables</b>", body_style)],
-        [Paragraph("<b>Phase 1: Lab Validation</b>", body_style), Paragraph("Q3 2026", body_style), Paragraph("20 benchmark scenarios validated across 33 automated tests; sub-15ms inference latency.", body_style)],
+        [Paragraph("<b>Phase</b>", body_style), Paragraph("<b>Timeline</b>", body_style), Paragraph("<b>Milestones &amp; Trial Endpoints</b>", body_style)],
+        [Paragraph("<b>Phase 1: Lab Validation</b>", body_style), Paragraph("Q3 2026", body_style), Paragraph("20 synthetic benchmark scenarios validated across 33 automated tests; sub-15ms inference latency.", body_style)],
         [Paragraph("<b>Phase 2: Shadow Trial</b>", body_style), Paragraph("Q4 2026", body_style), Paragraph("Silent shadow deployment alongside Epic/Cerner via HL7 FHIR; clinician concordance evaluation.", body_style)],
-        [Paragraph("<b>Phase 3: Live Hospital Pilot</b>", body_style), Paragraph("Q1–Q2 2027", body_style), Paragraph("Live clinical decision-support at 2 partner health systems; track LWBS & ICU avoidance KPIs.", body_style)],
-        [Paragraph("<b>Phase 4: Enterprise Scale</b>", body_style), Paragraph("Q3 2027+", body_style), Paragraph("Regional hospital network rollout with multi-facility dashboarding and telemedicine integration.", body_style)],
+        [Paragraph("<b>Phase 3: Live Hospital Pilot</b>", body_style), Paragraph("Q1–Q2 2027", body_style), Paragraph("<b>Primary Safety Endpoint:</b> &gt;45% reduction in Mean Time to Escalation (MTTE); <b>Operational Endpoint:</b> &lt;2 non-actionable alerts/nurse/shift; <b>Economic Endpoint:</b> &ge;25% LWBS reduction over 90 days.", body_style)],
+        [Paragraph("<b>Phase 4: Enterprise Scale</b>", body_style), Paragraph("Q3 2027+", body_style), Paragraph("Regional hospital network rollout with multi-facility dashboarding and centralized telemedicine escalation.", body_style)],
     ]
     roadmap_table = Table(roadmap_data, colWidths=[1.6 * inch, 1.1 * inch, 4.8 * inch])
     roadmap_table.setStyle(TableStyle([
@@ -278,17 +268,17 @@ def build_pdf():
         ('BOTTOMPADDING', (0, 0), (-1, -1), 2.5),
     ]))
     story.append(roadmap_table)
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 3))
 
     # Risks & Mitigations
-    story.append(Paragraph("7. Key Risks, Regulatory Compliance & Mitigations", h1_style))
+    story.append(Paragraph("7. Key Risks, Regulatory Compliance &amp; Mitigations", h1_style))
     story.append(Paragraph("• <b>AI Hallucination Risk:</b> Mitigated by 3-tier architecture where deterministic safety red-flags override all statistical models.", bullet_style))
     story.append(Paragraph("• <b>Clinician Alarm Fatigue:</b> Mitigated by queue compression surfacing only the top 3 actionable tasks rather than flooding nurses.", bullet_style))
     story.append(Paragraph("• <b>Regulatory Classification (SaMD):</b> Positioned as Non-Device CDS (21 U.S.C. § 360aaa-1); clinician retains 100% decision authority.", bullet_style))
     story.append(Paragraph("• <b>Data Privacy (HIPAA/GDPR):</b> Runs air-gapped on local hospital network with zero external cloud LLM dependencies and append-only audit logging.", bullet_style))
 
     # Outro
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 3))
     story.append(Paragraph(
         "<b>Conclusion:</b> PatientTriage.ai delivers the technological breakthrough hospitals urgently require: an intelligent, explainable, "
         "and ethically grounded continuous safety layer that protects patients, empowers clinicians, and unlocks millions in enterprise hospital value.",

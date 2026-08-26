@@ -12,7 +12,7 @@
 
 Emergency department (ED) crowding is a global healthcare crisis. Annually, over **140 million patients** visit emergency departments in the United States alone, with average waiting room boarding times ranging from 2.5 to over 6 hours.
 
-Traditional emergency triage operates on an outdated premise: **a single, static snapshot taken at intake**. Once triaged, patients are relegated to waiting lounges where physiological risk continuously evolves unmonitored. When unmonitored patients silently deteriorate, the results are catastrophic: preventable in-hospital cardiac arrests, unanticipated ICU transfers, heightened malpractice liabilities, and skyrocketing nurse burnout.
+Traditional emergency triage operates on an outdated premise: **a single, static snapshot taken at intake**. Once triaged, patients are relegated to waiting lounges where physiological risk continuously evolves unmonitored. When unmonitored patients silently deteriorate, physiological decline may remain undetected until a subsequent reassessment or clinical deterioration becomes apparent—leading to preventable in-hospital cardiac arrests, unanticipated ICU transfers, heightened malpractice liabilities, and skyrocketing nurse burnout.
 
 **PatientTriage.ai** introduces a breakthrough paradigm shift:
 > **“Triage is a snapshot. Risk isn't.”**  
@@ -35,17 +35,15 @@ Emergency departments worldwide face an unprecedented intersection of increasing
 
 ### 1.2 The Three Systemic Failure Modes of Static Triage
 1. **Silent Waiting Room Decompensation**:
-   Static triage scores (ESI 1–5) assume that patient acuity remains constant throughout the wait. In reality, occult internal bleeding, progressive septic hypoperfusion, and viral pneumonia desaturation worsen silently. Traditional systems have zero automated intelligence to detect or elevate these deteriorating patients.
+   Static triage scores (ESI 1–5) assume that patient acuity remains constant throughout the wait. In reality, occult internal bleeding, progressive septic hypoperfusion, and viral pneumonia desaturation worsen silently. Physiological decline may remain undetected until a subsequent reassessment or clinical deterioration becomes apparent.
 2. **The "Missing Data Is Safe" Assumption**:
    When intake records lack vital parameters (such as pulse oximetry or blood pressure) due to intake surges, legacy EHR systems default patients to lower urgency bands. This creates a dangerous false reassurance. In acute medicine, **missing data represents uncertainty, and uncertainty is clinical risk**.
 3. **The Attention Bottleneck (Attended vs. Unattended Patients)**:
    Legacy triage queues sort patients solely by initial intake score. Consequently, critical patients who are *already in resuscitation bays receiving active care* remain at the top of static lists, while *unattended deteriorating patients* in the waiting room remain buried at the bottom.
 
-### 1.3 The Cost of Failure in Emergency Triage
-- **Clinical Mortality**: Preventable in-waiting-room cardiac arrests carry a hospital mortality rate exceeding 70%.
-- **Left-Without-Being-Seen (LWBS)**: 3% to 7% of ED patients leave without medical care due to excessive uncommunicated wait times, resulting in $1.4M in lost hospital billing revenue annually per facility.
-- **Medical Malpractice Exposure**: Diagnostic delays and failure-to-monitor claims account for over **$1.1 billion** in annual US malpractice payouts, with an average settlement of $390,000 per delayed diagnosis case.
-- **Clinician Burnout & Turnover**: Constant anxiety over unmonitored waiting room patients drives emergency nurse turnover rates to 26.8% annually, costing hospitals $46,000 to $65,000 per nurse replacement.
+### 1.3 Competitive Differentiation Against Native EHR Scores (The Moat)
+- **Waiting Room Focus vs. Inpatient Focus**: Native EHR early warning systems (such as Epic Deterioration Index / EDI or Cerner MEWS/NEWS) were architected for *admitted inpatients in hospital beds* with continuous telemetry. PatientTriage.ai is engineered specifically for the chaotic, ambulatory waiting room.
+- **The Attention Gap Differentiator**: Native EHR scores only evaluate clinical severity—they do not account for **physician coverage** (whether a doctor is actively managing the patient) or **evidence decay** over unmonitored wait times.
 
 ---
 
@@ -65,35 +63,31 @@ To guarantee absolute patient safety, ethical AI transparency, and medical malpr
                                      │
 ┌────────────────────────────────────▼────────────────────────────────────┐
 │              TIER 2: AI & DECISION-SUPPORT SURVEILLANCE                 │
-│  • Vital Trajectory & Delta Velocity Modeling (ΔSpO₂, ΔHR, ΔSBP)        │
-│  • Dynamic Confidence Decay (Evidence half-life based on elapsed time)  │
-│  • Uncertainty-as-Risk Engine ("Unknown ≠ Safe" penalty)                │
-│  • Attention Gap Re-Ranking (Clinical Severity - Active Coverage)       │
-│  • Natural Language Explainability Engine ("Why Rank #1?")             │
+│  • The intelligence layer performs continuous physiological trend       │
+│    analysis, uncertainty scoring, confidence decay, and dynamic         │
+│    attention-gap prioritization, while deterministic safety rules       │
+│    provide hard guardrails.                                             │
+│  • Multimodal Vital Ingestion: Compatible with BLE wearable pulse       │
+│    oximetry rings/wristbands, waiting room automated kiosks, and        │
+│    rapid tablet entry during nurse walking rounds.                      │
 └────────────────────────────────────┬────────────────────────────────────┘
                                      │
 ┌────────────────────────────────────▼────────────────────────────────────┐
 │                    TIER 3: CLINICIAN GOVERNANCE                         │
-│  • Licensed Clinicians retain 100% final override authority            │
-│  • Mandatory Rationale Capture for clinical defensibility               │
+│  • Clinician override authority with mandatory justification recording  │
 │  • Append-Only Audit Ledger aligned with HIPAA & EU AI Act standards    │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.2 The Mathematical Differentiator: The Attention Gap Equation
-Instead of static sorting, PatientTriage.ai continuously calculates a real-time **Action Priority Score**:
-
+### 2.2 The Attention Gap Formulation & Default Formula Weights
 $$\text{Action Priority Score} = (w_r \cdot \text{Risk} + \text{Urgency}) + (w_d \cdot \text{Deterioration}) + (w_s \cdot \text{Staleness}) + \text{Wait Hazard} + (w_u \cdot \text{Uncertainty}) - (w_c \cdot \text{Clinical Coverage})$$
 
-- **Deterioration Velocity ($w_d$)**: Dynamically triggers when sequential vitals reveal derangement ($\Delta\text{SpO}_2 \le -5\%$ adds $+25$ points).
-- **Dynamic Evidence Decay ($\tau_{\text{staleness}}$)**: Confidence degrades over time via:
-  $$\text{Confidence}(t) = \text{Base} \times \max\left(0.20, 1.0 - \frac{t - t_{\text{last}}}{\text{Window} \times 1.5} \times 0.65\right)$$
-  When elapsed time exceeds the safety window (Level 2 = 15m, Level 3 = 30m), status flips to `SAFETY_EXPIRED` (+20 to +35 points).
-- **Clinical Coverage Offset ($w_c$)**: Deducts up to $-35$ points when an emergency physician is actively managing the patient (`is_attended = True`), enabling **unattended deteriorating waiting patients** to surface to Rank #1.
-
-### 2.3 Edge Deployability & Air-Gapped Operation
-- **Zero Cloud Leakage**: Runs on local hospital servers or on-premise Kubernetes clusters without sending sensitive patient vitals to external cloud LLM APIs.
-- **Sub-15ms Latency**: Deterministic algorithms evaluate 60+ patients in under 15 milliseconds, ensuring resilience during total internet blackouts.
+**Default Parameter Bounds**:
+- $w_r$ (Base Clinical Risk / Urgency): **$1.0$** (Base clinical risk score $0–100$)
+- $w_d$ (Deterioration Velocity): **$+25\text{ to }+40\text{ pts}$** ($\Delta\text{SpO}_2 \le -5\%$ or $\Delta\text{HR} \ge +20\text{ bpm}$)
+- $w_s$ (Staleness Penalty): **$+20\text{ to }+35\text{ pts}$** (upon safety window expiry)
+- $w_u$ (Uncertainty Penalty): **$+15\text{ to }+25\text{ pts}$** (missing vital parameters or zero history)
+- $w_c$ (Clinical Coverage Offset): **$-35\text{ pts}$** (deducted when `is_attended = True`, surfacing unattended waiting patients to Rank #1)
 
 ---
 
@@ -104,14 +98,14 @@ $$\text{Action Priority Score} = (w_r \cdot \text{Risk} + \text{Urgency}) + (w_d
 | **Emergency Triage Nurses (RNs)** | Overwhelmed by tracking 40+ waiting patients; fear of silent deterioration. | **Surfaces Top 3 High-Yield Interventions** with single Next-Best-Action buttons (`[ REASSESS NOW ]` / `[ ACQUIRE VITALS ]`). |
 | **Attending Emergency Physicians (MDs)** | Lack of visibility into which waiting patient has worsened since intake. | Real-time **Attention Gap Queue** ensures doctors are dispatched to the patient with the highest clinical risk-to-attention delta. |
 | **Nurse Supervisors / Charge Nurses** | Operational chaos during mass-casualty surges and shift handovers. | **3× Surge Mode** automatically compresses queue; persistent **Safety Summary Panel** provides instant hospital-wide situational awareness. |
-| **Chief Medical Officers (CMOs)** | Delayed diagnosis lawsuits, sentinel events in waiting rooms, accreditation risks. | **100% Guardrail Downgrade Protection** and immutable **Append-Only Audit Trails** for malpractice defense. |
+| **Chief Medical Officers (CMOs)** | Delayed diagnosis lawsuits, sentinel events in waiting rooms, accreditation risks. | **100% Downgrade Guardrails** and immutable **Append-Only Audit Trails** for malpractice defense. |
 | **Chief Financial Officers (CFOs)** | Uncompensated ICU transfers, LWBS revenue leakage, nurse turnover costs. | Delivers measurable **$3.82M annual net ROI** per 500-bed hospital facility. |
 
 ---
 
 ## 4. Business Case, Financial ROI & Impact Model
 
-### 4.1 Annual Economic Value Creation (Model for a 500-Bed Acute Care Hospital)
+### Annual Economic Value Creation (Model for a 500-Bed Acute Care Hospital)
 *Baseline Parameters: 65,000 Annual ED Visits &bull; 500 Beds &bull; 4.8% Average LWBS Rate &bull; $1,200 Average ED Revenue per Visit*
 
 | Value Driver | Pre-Implementation Baseline | Post-Implementation with PatientTriage.ai | Annual Financial Impact |
@@ -143,7 +137,7 @@ PatientTriage.ai operates as a B2B Enterprise SaaS and On-Premise Licensed platf
 
 ---
 
-## 6. Phased Multi-Year Implementation Roadmap
+## 6. Phased Multi-Year Implementation Roadmap & Precise Trial Endpoints
 
 ```
 2026 Q3               2026 Q4               2027 Q1-Q2            2027 Q3-Q4
@@ -155,17 +149,10 @@ PatientTriage.ai operates as a B2B Enterprise SaaS and On-Premise Licensed platf
 └──────────────────┘  └──────────────────┘  └──────────────────┘  └──────────────────┘
 ```
 
-- **Phase 1: Proof-of-Concept & Lab Validation (Current — Q3 2026)**:
-  - 20 benchmark clinical scenarios fully validated across 33 automated tests.
-  - Sub-15ms inference latency and 3× Surge Mode stress-testing verified.
-- **Phase 2: Shadow Clinical Trial & Interoperability (Q4 2026)**:
-  - Deploy in silent "shadow mode" alongside legacy EHR (Epic/Cerner) via HL7 FHIR and CDS Hooks.
-  - Compare PatientTriage.ai recommendation timestamps against real clinician escalation events.
-- **Phase 3: Live Pilot Deployment in 2 Partner Health Systems (Q1–Q2 2027)**:
-  - Activate active clinician decision-support in Level-1 Academic Trauma Center and Community Emergency Center.
-  - Track LWBS reduction, ICU transfer avoidance, and nurse satisfaction metrics.
-- **Phase 4: Multi-Hospital Enterprise Expansion (Q3–Q4 2027 & Beyond)**:
-  - Scale across regional hospital networks with multi-facility dashboarding and centralized telemedicine escalation dispatch.
+### Precise Clinical Trial Endpoints (Phase 2 & Phase 3):
+- **Primary Safety Endpoint**: Reduction in **Mean Time to Escalation (MTTE)** for decompensating waiting room patients ($>45\%$ faster clinical escalation).
+- **Operational Endpoint**: Nurse false-alarm rate maintained strictly below **$< 2$ non-actionable alerts per nurse per shift**.
+- **Economic Endpoint**: Measured delta in **Left-Without-Being-Seen (LWBS)** rate over a 90-day pilot deployment ($\ge 25\%$ reduction).
 
 ---
 
@@ -187,11 +174,6 @@ PatientTriage.ai operates as a B2B Enterprise SaaS and On-Premise Licensed platf
 1. **Unmatched Healthcare Integration Capabilities**: Accenture's global Health & Public Service practice manages complex EHR implementations across 40+ countries.
 2. **Responsible AI Leadership**: Aligns directly with Accenture’s Responsible AI Framework—ensuring safety, explainability, privacy-by-design, and human agency.
 3. **Compelling Market Differentiation**: Transforms hospital consulting engagements from retrospective analytics into **real-time clinical safety and throughput transformation**.
-
-### Summary Verdict
-Emergency triage is broken because it was designed for a world where patients did not have to wait. In today's overcrowded emergency departments, **risk is continuous, dynamic, and unforgiving**.
-
-**PatientTriage.ai** delivers the technological breakthrough hospitals urgently require: an intelligent, explainable, and ethically grounded continuous safety layer that protects patients, empowers clinicians, and unlocks millions in enterprise hospital value.
 
 ---
 
